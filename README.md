@@ -39,6 +39,7 @@ This file contains:
     - Time values
     - Time signatures in /2, /4, /8, /16
     - Duple, triple, quadruple / simple, compound
+    - Irregular time signatures
     - Rests
     - Ties and dotted notes
     - Triplets, quintuplets, sextuplets
