@@ -1,6 +1,6 @@
 const { printKeyboard, chromaticScale } = require("../notes/notes-utils");
 const { intervalNumbers, semitonesToIntervals } = require("./interval-utils");
-const { sortNotes } = require("../utils");
+const { sortNotes } = require("../notes/notes-utils");
 
 const Note = require("../notes/note.js");
 const Interval = require("./interval");
@@ -47,26 +47,44 @@ const IntervalCalculator = class {
         return interval;
     }
 
-    static calculateNoteFromInterval(note, interval) {
+    static calculateNoteFromInterval(note, interval, asc = true) {
         const keyboard = printKeyboard();
         let chromaticIndex = chromaticScale.findIndex(notes => notes.includes(note.note));
         let semitones = interval.semitones;
 
-        while (semitones > 0) {
-            semitones--;
-            if (chromaticIndex < chromaticScale.length - 1) {
-                chromaticIndex++;
-            } else {
-                chromaticIndex = 0;
+        if (asc) {
+            while (semitones > 0) {
+                semitones--;
+                if (chromaticIndex < chromaticScale.length - 1) {
+                    chromaticIndex++;
+                } else {
+                    chromaticIndex = 0;
+                }
+            }
+        } else {
+            while (semitones > 0) {
+                semitones--;
+                if (chromaticIndex > 0) {
+                    chromaticIndex--;
+                } else {
+                    chromaticIndex = chromaticScale.length - 1;
+                }
             }
         }
 
         let name = `${note.name}${note.octave}`;
-        let newNaturalNote = keyboard[keyboard.indexOf(name) + interval.distance - 1];
+        let newNaturalNote; 
+        
+        if (asc) {
+            newNaturalNote = keyboard[keyboard.indexOf(name) + interval.distance - 1];
+        } else {
+            newNaturalNote = keyboard[keyboard.indexOf(name) - interval.distance + 1];
+        }        
 
         let chromaticAlterationIndex = chromaticScale[chromaticIndex].findIndex(note => note[0] === newNaturalNote[0]);
         let newNote = chromaticScale[chromaticIndex][chromaticAlterationIndex] + newNaturalNote.slice(newNaturalNote.length - 1);
 
+        // MUST THROW ERROR IF chromaticAlterationIndex IS UNDEFINED
         return new Note(newNote);
     }
 }

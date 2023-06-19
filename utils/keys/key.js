@@ -88,8 +88,7 @@ const MinorKey = class {
     }
 }   
 
-const minor = new MinorKey("F")
-const major = new MajorKey("A");
-console.log(minor);
-console.log(minor.getTriads());
-console.log(minor.getDominantSeventh());
+module.exports = {
+    MajorKey,
+    MinorKey
+}

@@ -69,5 +69,3 @@ const ChordBuilder = class {
 }
 
 module.exports = ChordBuilder;
-
-console.log(ChordBuilder.dominantSeventh(new Note("A2")));
