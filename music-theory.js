@@ -4,7 +4,8 @@ const IntervalCalculator = require("./utils/intervals/interval-calculator");
 const Interval = require("./utils/intervals/interval");
 const { MajorKey, MinorKey } = require("./utils/keys/key");
 const { findInterval } = require("./exercises/intervals/interval-practice");
-const { findIntervalGradeThree } = require("./exercises/intervals/intervals-3");
+const { findIntervalGradeFive } = require("./exercises/intervals/intervals-5");
+const { recogniseTonicTriad, addNoteToCompleteTriad } = require("./exercises/chords/chords-1");
 /*
 const { getKeySignature } = require("./utils/scales");
 */
@@ -31,9 +32,9 @@ console.log(getKeySignature("A minor"));
 console.log(getKeySignature("Bb minor"));
 console.log(getKeySignature("A# minor"));*/
 
-const aMajor = new MajorKey("E");
+const aMajor = new MinorKey("E");
 
-const exercise = new Exercise(findIntervalGradeThree({ scale: aMajor.getAscScale(), findNote: true }));
+const exercise = new Exercise(recogniseTonicTriad(3));
 exercise.execute();
 /*
 for (let note of notes) {
