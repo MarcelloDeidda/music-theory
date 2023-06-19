@@ -22,14 +22,20 @@ const MajorKey = class {
         return createScale(this.tonic, this.keySignature).sort(() => -1)
     }
 
-    getTriads() {
+    getTriads(tonic) {
         const triads = {};
 
         for (let i = 1; i <= 7; i++) {
-            triads[i] = ChordBuilder.triadFromScale(i, this.getAscScale());
+            triads[i] = ChordBuilder.triadFromKey(i, tonic, this.mode);
         }
 
         return triads;
+    }
+
+    getTriad(degree, tonic) {
+        let triad = ChordBuilder.triadFromKey(degree, tonic, this.mode);
+        
+        return triad;
     }
 
     getDominantSeventh() {
@@ -81,6 +87,12 @@ const MinorKey = class {
         }
 
         return triads;
+    }
+
+    getTriad(degree, tonic) {
+        let triad = ChordBuilder.triadFromKey(degree, tonic, this.mode);
+        
+        return triad;
     }
 
     getDominantSeventh() {

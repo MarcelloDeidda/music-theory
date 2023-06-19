@@ -113,7 +113,7 @@ module.exports.getKeySignature = key => {
             note: keyInfo[0]
         };
     } else if (mode === "minor") {
-        tonic = new IntervalCalculator().calculateNoteFromInterval(new Note(`${keyInfo[0]}1`), new Interval("3 minor"));
+        tonic = IntervalCalculator.calculateNoteFromInterval(new Note(`${keyInfo[0]}1`), new Interval("3 minor"));
     }
 
     return this.printAccidentals(this.keys[tonic.note]);
