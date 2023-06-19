@@ -65,12 +65,114 @@ This file contains:
 - Instruments and voice types
 
 
-## Functions
+## Exercises
 
-Completed:
+### Keys & Scales
 
-- Calculate interval;
+- Grade One:
+    - Keys: C, G, D, F major
+    - Add notes to complete scale
+    - Find degrees of a scale
+    - Find tones and semitones in a scale
+    - Recognise scales
+    - Add accidentals to scales
+    - True / False on degrees
+    - Given a key signature, find the major key
+    - Select correct key signature for scales
+    - Recognise accidentals,
+    - Given a melody with accidentals, recognise the key
+    - Select notes that need accidental to create melody in given key
+- Grade Two:
+    - Keys: A, Bb, Eb major and A, E, D minor
+    - Recognise key signatures
+    - Add accidentals to scales
+    - Add accidentals to melodies
+    - Find degrees of scales
+    - Find tones / semitones of scales
+    - Find key of given melody
+    - Find relative minors
+    - Harmonic scales
+- Grade Three:
+    - Keys: E, Ab major and B, F#, C#, G, C, F minor
+    - Add accidentals to scales
+    - Find degrees of scales
+    - Recognise key signatures
+    - Add accidentals to melodies
+    - Melodic scales
+    - Find relative minors
+    - Recognise scales
+    - Select accidentals that aren't needed
+- Grade Four:
+    - Keys: Db, B major and G#, Bb minor
+    - Technical names for the degrees
+    - Choose correct clef for key signature
+    - Add accidentals to scales and melodies
+    - Recognise key of melody
+    - Chromatic scale - find incorrect notes
+    - Name major and minor keys for key signature
+    - Recognise scales
+- Grade Five:
+    - Keys: Gb, F# major and Eb, D# minor
+    - Find the correct key signature for a key
+    - Choose correct clef for key signature
+    - Add accidentals to scales and melodies
+    - Find degrees of scales
+    - Complete scales
 
-To complete:
+### **Intervals**
 
-- 
+- **Grade One:**
+    - **Keys: C, G, D, F major**
+    - **Calculate ascending intervals (number only) from the tonic**
+    - **Given the tonic and an ascending interval, find the second note**
+- **Grade Two:**
+    - **Keys: A, Bb, Eb major and A, E, D minor**
+    - **Calculate ascending or descending intervals (number only) from the tonic**
+    - **Given the tonic and an ascending or descending interval, find the second note**
+- **Grade Three:**
+    - **Keys: E, Ab major and B, F#, C#, G, C, F minor**
+    - **Calculate simple intervals (perfect / minor / major) from the tonic**
+    - **Given the tonic and a simple interval, find the second note**
+- **Grade Four:**
+    - **Keys: Db, B major and G#, Bb minor**
+    - **Calculate intervals from any note**
+    - **Given a note and an interval, find the second note**
+    - **Count semitones in intervals**
+- **Grade Five:**
+    - **Keys: Gb, F# major and Eb, D# minor**
+    - **Calculate chromatic and compound intervals from any note**
+    - **Given a note and a chromatic / compound interval, find the second note**
+    - **Count semitones in intervals**
+
+### Chords
+
+- **Grade One**:
+    - **Keys: C, G, D, F major**
+    - **Recognise key of tonic triad**
+    - **Add note to complete triad**
+- **Grade Two**:
+    - **Keys: A, Bb, Eb major and A, E, D minor**
+    - **Recognise key of tonic triad**
+    - **Add note to complete triad**
+- Grade Three:
+    - **Keys: E, Ab major and B, F#, C#, G, C, F minor**
+    - True / False
+    - **Recognise key of tonic triad**
+    - **Add note to complete triad**
+    - Add accidental to complete triad
+- Grade Four:
+    - Keys: Db, B major and G#, Bb minor
+    - Primary triads
+    - Name the key of triads (3, 2, 1)
+    - Recognise triad degree
+    - Write triad in root position
+    - Recognise primary chords
+- Grade Five:
+    - Keys: Gb, F# major and Eb, D# minor
+    - Recognise triad degree
+    - Add note to complete triad
+    - Recognise cadences
+    - Choose suitable chord for melody
+    - Choose chords, then name cadences
+    - Recognise Inversions in triads and chords
+
