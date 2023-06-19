@@ -1,8 +1,7 @@
 const prompt = require("prompt");
 
 const Exercise = class {
-    constructor(exercise) {
-        const { question, answers } = exercise();
+    constructor({ question, answers }) {
         this.question = question;
         this.answers = answers;
     }
