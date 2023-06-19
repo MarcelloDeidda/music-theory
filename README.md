@@ -28,12 +28,12 @@ This file contains:
 ## Topics
 
 - Pitch:
-    - Recognise notes with multiple ledger lines
-    - Recognise notes in four different keys
-    - Recognise accidentals
-    - Calculate semitones and tones
+    - Recognise notes with multiple ledger lines 
+    - Recognise notes in four different keys 
+    - Recognise accidentals 
+    - Calculate semitones and tones 
     - Transposing by one octave, major 2nd, minor 3rd, perfect 5th
-    - Double sharps and Double flats
+    - Double sharps and Double flats 
     - Enharmonic equivalents
 - Rhythm:
     - Time values
@@ -45,21 +45,21 @@ This file contains:
     - Triplets, quintuplets, sextuplets
     - Grouping notes
 - Keys & Scales:
-    - Recognise all major and minor scales
+    - Recognise all major and minor scales 
     - Degrees of a scale and their names
     - Tones and Semitones
-    - Chromatic scale
+    - Chromatic scale 
 - Intervals:
-    - Calculating simple and compound intervals
-    - Classifying perfect, minor, major, diminished and augmented intervals
+    - Calculating simple and compound intervals X
+    - Classifying perfect, minor, major, diminished and augmented intervals X
 - Chords:
-    - Tonic triads in major and minor keys
+    - Tonic triads in major and minor keys 
     - Primary chords and primary triads
     - Root position, inversions
     - Cadences
     - Choosing suitable chords for melodies
-    - All chords of scales
-    - 7th chords
+    - All chords of scales 
+    - 7th chords 
 - Terms and signs in Italian, French and German
 - Ornaments
 - Instruments and voice types

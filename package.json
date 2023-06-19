@@ -1,0 +1,23 @@
+{
+  "name": "music-theory",
+  "version": "1.0.0",
+  "description": "The aim of this program is to provide music theory students with infinite exercises, in order to practise concepts from grade 1 to 5 (ABRSM).",
+  "main": "music-theory.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcelloDeidda/music-theory.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarcelloDeidda/music-theory/issues"
+  },
+  "homepage": "https://github.com/MarcelloDeidda/music-theory#readme",
+  "dependencies": {
+    "prompt": "^1.3.0"
+  }
+}
