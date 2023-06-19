@@ -6,9 +6,13 @@ const { qualities } = require("../../utils/intervals/interval-utils");
 const { sortNotes } = require("../../utils/notes/notes-utils");
 
 const noteBuilder = new NoteBuilder(4, 5);
-let availableQualities = [qualities.minor, qualities.perfect, qualities.major];
+let availableQualities = [qualities.diminished, qualities.minor, qualities.perfect, qualities.major, qualities.augmented];
 
-const findIntervalGradeThree = (config = {}) => {
+const findIntervalGradeThreeAndFour = (config = {}) => {
+    if (config.simpleInterval) {
+        availableQualities = availableQualities.slice(1, 4);
+    }
+
     let note1 = new Note(`${config.scale[0]}${Math.floor(Math.random() * 2) + 4}`);
     let note2 = noteBuilder.getRandomNoteFromScale(config.scale);
     let interval = IntervalCalculator.calculateInterval(note1, note2);
@@ -37,5 +41,5 @@ const findIntervalGradeThree = (config = {}) => {
 }
 
 module.exports = {
-    findIntervalGradeThree
+    findIntervalGradeThreeAndFour
 }
