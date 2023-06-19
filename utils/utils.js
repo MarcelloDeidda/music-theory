@@ -1,4 +1,4 @@
-const { notes } = require("./scales");
+const { notes } = require("./notes/notes-utils");
 
 module.exports.sortNotes = (...noteList) => {
     const newNoteList = noteList.slice();

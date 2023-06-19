@@ -1,5 +1,7 @@
 module.exports.notes = ["C", "D", "E", "F", "G", "A", "B"];
 
+module.exports.accidentals = ["B", "b", "", "#", "x"];
+
 module.exports.chromaticScale = [
     ["B#", "C", "DB"],
     ["Bx", "C#", "Db"],
@@ -15,13 +17,6 @@ module.exports.chromaticScale = [
     ["Ax", "B", "Cb"]
 ]
 
-module.exports.createScale = tonic => {
-    let index = notes.indexOf(tonic.toUpperCase());
-    const scale = notes.slice(index).concat(notes.slice(0, index + 1));
-
-    return scale;
-}
-
 module.exports.printKeyboard = () => {
     let keyboard = []
 
@@ -36,6 +31,3 @@ module.exports.printKeyboard = () => {
 
     return keyboard;
 }
-
-
-const accidentalsIndexes = [3, 0, 4, 1, 5, 2, 6];

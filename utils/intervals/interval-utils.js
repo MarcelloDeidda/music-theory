@@ -35,7 +35,7 @@ const semitonesToIntervals = {
     },
     3: {
         second: qualities.augmented,
-        three: qualities.minor
+        third: qualities.minor
     },
     4: {
         third: qualities.major,
@@ -67,7 +67,7 @@ const semitonesToIntervals = {
     },
     11: {
         seventh: qualities.major,
-        eight: qualities.diminished
+        octave: qualities.diminished
     }
 }
 

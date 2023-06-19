@@ -1,12 +1,12 @@
-const { chromaticScale, printKeyboard } = require("../scales");
+const { printKeyboard, chromaticScale } = require("../notes/notes-utils");
 const { intervalNumbers, semitonesToIntervals } = require("./interval-utils");
 const { sortNotes } = require("../utils");
 
-const Note = require("../note.js");
+const Note = require("../notes/note.js");
 const Interval = require("./interval");
 
 const IntervalCalculator = class {
-    #calculateDistance(firstNote, secondNote) {
+    static #calculateDistance(firstNote, secondNote) {
         const keyboard = printKeyboard();
 
         let indexDifference = keyboard.indexOf(`${secondNote.name}${secondNote.octave}`) - keyboard.indexOf(`${firstNote.name}${firstNote.octave}`)
@@ -14,7 +14,7 @@ const IntervalCalculator = class {
         return Math.abs(indexDifference) + 1;
     }
 
-    #calculateSemitones(firstNote, secondNote) {
+    static #calculateSemitones(firstNote, secondNote) {
         let firstNoteIndex = chromaticScale.findIndex(notes => notes.includes(firstNote.note));
         let secondNoteIndex = chromaticScale.findIndex(notes => notes.includes(secondNote.note));
 
@@ -27,7 +27,7 @@ const IntervalCalculator = class {
         }
     }
 
-    calculateInterval(firstNote, secondNote) {
+    static calculateInterval(firstNote, secondNote) {
         // Calculate simple and compound interval
         let distance = this.#calculateDistance(firstNote, secondNote);
         let simpleDistance = distance;
@@ -42,15 +42,14 @@ const IntervalCalculator = class {
         let number = intervalNumbers[simpleDistance];
         let quality = semitonesToIntervals[semitones][number];
 
-        const interval = new Interval(`${distance} ${quality}`);
+        const interval = new Interval(`${distance}` + `${quality ? ` ${quality}` : ""}`, semitones);
 
         return interval;
     }
 
-    calculateNoteFromInterval(note, interval) {
+    static calculateNoteFromInterval(note, interval) {
         const keyboard = printKeyboard();
-
-        let chromaticIndex = chromaticScale.findIndex(notes => notes.includes(note.name));
+        let chromaticIndex = chromaticScale.findIndex(notes => notes.includes(note.note));
         let semitones = interval.semitones;
 
         while (semitones > 0) {
