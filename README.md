@@ -127,11 +127,11 @@ This file contains:
     - **Given the tonic and an ascending interval, find the second note**
 - **Grade Two:**
     - **Keys: A, Bb, Eb major and A, E, D minor**
-    - **Calculate ascending or descending intervals (number only) from the tonic**
+    - **Calculate ascending intervals (number only) from the tonic**
     - **Given the tonic and an ascending or descending interval, find the second note**
 - **Grade Three:**
     - **Keys: E, Ab major and B, F#, C#, G, C, F minor**
-    - **Calculate simple intervals (perfect / minor / major) from the tonic**
+    - **Calculate ascending simple intervals (perfect / minor / major) from the tonic**
     - **Given the tonic and a simple interval, find the second note**
 - **Grade Four:**
     - **Keys: Db, B major and G#, Bb minor**
@@ -154,12 +154,12 @@ This file contains:
     - **Keys: A, Bb, Eb major and A, E, D minor**
     - **Recognise key of tonic triad**
     - **Add note to complete triad**
-- Grade Three:
+- **Grade Three:**
     - **Keys: E, Ab major and B, F#, C#, G, C, F minor**
-    - True / False
+    - **True / False**
     - **Recognise key of tonic triad**
     - **Add note to complete triad**
-    - Add accidental to complete triad
+    - **Add accidental to complete triad**
 - Grade Four:
     - Keys: Db, B major and G#, Bb minor
     - Primary triads

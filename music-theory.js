@@ -1,14 +1,9 @@
 const Note = require("./utils/notes/note");
-const Exercise = require("./exercises/exercise");
-const IntervalCalculator = require("./utils/intervals/interval-calculator");
+const ExerciseHandler = require("./exercises/exercise");
 const Interval = require("./utils/intervals/interval");
-const { MajorKey, MinorKey } = require("./utils/keys/key");
-const { findInterval } = require("./exercises/intervals/interval-practice");
-const { findIntervalGradeFive } = require("./exercises/intervals/intervals-5");
-const { recogniseTonicTriad, addNoteToCompleteTriad } = require("./exercises/chords/chords-1");
-/*
-const { getKeySignature } = require("./utils/scales");
-*/
+
+const IntervalExercise = require("./exercises/intervals/interval-exercise");
+
 const a = new Note("C2");
 const b = new Note("DB2");
 const c = new Note("Db2");
@@ -31,11 +26,9 @@ console.log(IntervalCalculator.calculateInterval(a, d));
 console.log(getKeySignature("A minor"));
 console.log(getKeySignature("Bb minor"));
 console.log(getKeySignature("A# minor"));*/
-
-const aMajor = new MinorKey("E");
-
-const exercise = new Exercise(recogniseTonicTriad(3));
-exercise.execute();
+/*
+const chordExercises = new TonicTriadExercises(5);
+ExerciseHandler.execute(chordExercises.recogniseTriad());*/
 /*
 for (let note of notes) {
     for (let i of intervals) {
@@ -44,3 +37,7 @@ for (let note of notes) {
     }
 }*/
 
+const z = new IntervalExercise(5);
+//for (let i = 0; i < 300; i++) {
+    console.log(z.findNoteFromInterval())
+//}
