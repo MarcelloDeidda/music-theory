@@ -9,7 +9,7 @@ const { qualities } = require("../../utils/intervals/interval-utils");
 const noteBuilder = new NoteBuilder(2, 5);
 
 const IntervalExercise = class {
-    constructor(grade) {
+    constructor(grade = 1) {
         this.grade = grade;
         this.numberOnly = true;
         this.ascOnly = true;
