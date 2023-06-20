@@ -2,6 +2,7 @@ const Note = require("./utils/notes/note");
 const ExerciseHandler = require("./exercises/exercise");
 const Interval = require("./utils/intervals/interval");
 
+const TriadExercises = require("./exercises/chords/triad-exercises");
 const IntervalExercise = require("./exercises/intervals/interval-exercise");
 
 const a = new Note("C2");
@@ -35,9 +36,16 @@ for (let note of notes) {
         let newNote = IntervalCalculator.calculateNoteFromInterval(note, i);
         console.log(`${note.fullNote} + ${i.quality} ${i.number} = ${newNote.fullNote}`)
     }
-}*/
-
+}*//*
 const z = new IntervalExercise(5);
 //for (let i = 0; i < 300; i++) {
     console.log(z.findNoteFromInterval())
-//}
+//}*/
+
+const x = new TriadExercises(5);
+
+ExerciseHandler.execute(x.completePrimaryTriad())
+/*
+for (let i = 0; i < 300; i++) {
+    console.log(x.completePrimaryTriad())
+}*/

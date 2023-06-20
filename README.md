@@ -160,17 +160,17 @@ This file contains:
     - **Recognise key of tonic triad**
     - **Add note to complete triad**
     - **Add accidental to complete triad**
-- Grade Four:
-    - Keys: Db, B major and G#, Bb minor
-    - Primary triads
-    - Name the key of triads (3, 2, 1)
-    - Recognise triad degree
-    - Write triad in root position
-    - Recognise primary chords
+- **Grade Four:**
+    - **Keys: Db, B major and G#, Bb minor**
+    - **Primary triads**
+    - **Name the key of triads (3, 2, 1)**
+    - **Recognise triad degree**
+    - **Write triad in root position**
+    - **Recognise primary chords**
 - Grade Five:
-    - Keys: Gb, F# major and Eb, D# minor
-    - Recognise triad degree
-    - Add note to complete triad
+    - **Keys: Gb, F# major and Eb, D# minor**
+    - **Recognise triad degree**
+    - **Add note to complete triad**
     - Recognise cadences
     - Choose suitable chord for melody
     - Choose chords, then name cadences
