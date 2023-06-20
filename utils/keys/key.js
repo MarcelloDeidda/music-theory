@@ -1,9 +1,9 @@
 const IntervalCalculator = require("../intervals/interval-calculator");
+const ChordBuilder = require("../chords/chord-builder");
 const Interval = require("../intervals/interval");
 const Note = require("../notes/note");
 
 const { createScale, getKeySignature } = require("./keys-utils");
-const ChordBuilder = require("../chords/chord-builder");
 
 const MajorKey = class {
     constructor(tonic) {
@@ -22,6 +22,11 @@ const MajorKey = class {
         return createScale(this.tonic, this.keySignature).sort(() => -1)
     }
 
+    getDegree(degree) {
+        const scale = this.getAscScale();
+        return scale[degree - 1];
+    }
+
     getTriads(tonic) {
         const triads = {};
 
@@ -34,12 +39,8 @@ const MajorKey = class {
 
     getTriad(degree, tonic) {
         let triad = ChordBuilder.triadFromKey(degree, tonic, this.mode);
-        
-        return triad;
-    }
 
-    getDominantSeventh() {
-        return ChordBuilder.dominantSeventhFromScale(this.getAscScale());
+        return triad;
     }
 }
 
@@ -59,10 +60,10 @@ const MinorKey = class {
 
         ascScales.harmonic = ascScales.natural.slice();
         ascScales.harmonic[6] = IntervalCalculator.calculateNoteFromInterval(new Note(`${ascScales.harmonic[6]}1`), new Interval("1 augmented")).note;
-        
+
         ascScales.melodic = ascScales.harmonic.slice();
         ascScales.melodic[5] = IntervalCalculator.calculateNoteFromInterval(new Note(`${ascScales.melodic[5]}1`), new Interval("1 augmented")).note;
-        
+
         return ascScales;
     }
 
@@ -73,10 +74,15 @@ const MinorKey = class {
 
         descScales.harmonic = descScales.natural.slice();
         descScales.harmonic[1] = IntervalCalculator.calculateNoteFromInterval(new Note(`${descScales.harmonic[1]}1`), new Interval("1 augmented")).note;
-        
+
         descScales.melodic = descScales.natural.slice();
-        
+
         return descScales;
+    }
+
+    getDegree(degree) {
+        const scale = this.getAscScale().harmonic;
+        return scale[degree - 1];
     }
 
     getTriads() {
@@ -90,15 +96,19 @@ const MinorKey = class {
     }
 
     getTriad(degree, tonic) {
+        // If tonic doesn't correspond, throw error
         let triad = ChordBuilder.triadFromKey(degree, tonic, this.mode);
+        let seventh = this.getDegree(7)[0];
         
-        return triad;
+        return triad.map(note => {
+            if (note.name === seventh) {
+                return IntervalCalculator.calculateNoteFromInterval(note, new Interval("1 augmented"));
+            } else {
+                return note;
+            }
+        });
     }
-
-    getDominantSeventh() {
-        return ChordBuilder.dominantSeventhFromScale(this.getAscScale().harmonic);
-    }
-}   
+}
 
 module.exports = {
     MajorKey,
