@@ -36,7 +36,7 @@ const TriadExercises = class {
         }
     }
 
-    recogniseTriad() {
+    recogniseTonicTriad() {
         const { triad, key } = this.#generateTriad();
 
         let question = `Enter the key of the following chord: ${triad[0].fullNote} ${triad[1].fullNote} ${triad[2].fullNote}:`
@@ -48,7 +48,7 @@ const TriadExercises = class {
         }
     }
 
-    addNoteToCompleteTriad() {
+    addNoteToCompleteTonicTriad() {
         const { triad, key } = this.#generateTriad();
 
         let answers = [triad.splice(Math.floor(Math.random() * 3), 1)[0].fullNote];
@@ -60,7 +60,7 @@ const TriadExercises = class {
         }
     }
 
-    addAccidentals() {
+    addAccidentalsToTonicTriad() {
         const { triad, key } = this.#generateTriad();
 
         let naturalTriad = ExerciseHandler.removeAccidentals(triad);
@@ -84,7 +84,7 @@ const TriadExercises = class {
         }
     }
 
-    isThisTriadRight() {
+    isThisTonicTriadRight() {
         let { triad, key } = this.#generateTriad();
         let triadIsCorrect = true;
 
@@ -103,8 +103,6 @@ const TriadExercises = class {
             answers
         }
     }
-
-    // buildTriad() {}
 
     recogniseKeyFromPrimaryTriads(numberOfTriads = 3) {
         const { triads, key } = this.#generatePrimaryTriads();
