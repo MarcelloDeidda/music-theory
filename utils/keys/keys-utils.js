@@ -4,23 +4,6 @@ const IntervalCalculator = require("../intervals/interval-calculator");
 const Interval = require("../intervals/interval");
 const Note = require("../notes/note");
 
-module.exports.createScale = (tonic, keySignature) => {
-    let index = notes.indexOf(tonic[0].toUpperCase());
-    let scale = notes.slice(index).concat(notes.slice(0, index + 1));
-
-    for (let acc of keySignature) {
-        scale = scale.map(note => {
-            if (note === acc[0]) {
-                return acc;
-            } else {
-                return note;
-            }
-        });
-    }
-
-    return scale;
-}
-
 module.exports.keys = {
     "Cb": {
         type: "b",
@@ -117,4 +100,21 @@ module.exports.getKeySignature = key => {
     }
 
     return this.printAccidentals(this.keys[tonic.note]);
+}
+
+module.exports.createScale = (tonic, keySignature) => {
+    let index = notes.indexOf(tonic[0].toUpperCase());
+    let scale = notes.slice(index).concat(notes.slice(0, index + 1));
+
+    for (let acc of keySignature) {
+        scale = scale.map(note => {
+            if (note === acc[0]) {
+                return acc;
+            } else {
+                return note;
+            }
+        });
+    }
+
+    return scale;
 }
