@@ -1,7 +1,6 @@
 const IntervalCalculator = require("../intervals/interval-calculator");
 const Interval = require("../intervals/interval");
 const Note = require("../notes/note");
-const { getKeySignature } = require("../keys/keys-utils");
 const { printKeyboard } = require("../notes/notes-utils");
 
 const ChordBuilder = class {
@@ -46,8 +45,7 @@ const ChordBuilder = class {
         return [root, third, fifth, seventh];
     }
 
-    static triadFromKey(degree, tonic, mode) {
-        const keySignature = getKeySignature(`${tonic.note} ${mode}`);
+    static triadFromKey(degree, tonic, keySignature) {
         const keyboard = printKeyboard();
 
         let tonicIndex = keyboard.indexOf(`${tonic.name}${tonic.octave}`);
