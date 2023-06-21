@@ -72,11 +72,10 @@ This file contains:
 - Grade One:
     - **Keys: C, G, D, F major**
     - Add notes to complete scale
-    - Find degrees of a scale
+    - **Find degrees of a scale**
     - Find tones and semitones in a scale
-    - Recognise scales
+    - **Recognise scales**
     - Add accidentals to scales
-    - True / False on degrees
     - **Given a key signature, find the major key**
     - **Select correct key signature for scales**
     - Recognise accidentals,
@@ -87,36 +86,36 @@ This file contains:
     - **Recognise key signatures**
     - Add accidentals to scales
     - Add accidentals to melodies
-    - Find degrees of scales
+    - **Find degrees of scales**
     - Find tones / semitones of scales
     - Find key of given melody
     - Find relative minors
-    - Harmonic scales
+    - **Harmonic scales**
 - Grade Three:
     - **Keys: E, Ab major and B, F#, C#, G, C, F minor**
     - Add accidentals to scales
-    - Find degrees of scales
+    - **Find degrees of scales**
     - **Recognise key signatures**
     - Add accidentals to melodies
-    - Melodic scales
+    - **Melodic scales**
     - Find relative minors
-    - Recognise scales
+    - **Recognise scales**
     - Select accidentals that aren't needed
 - Grade Four:
     - **Keys: Db, B major and G#, Bb minor**
-    - Technical names for the degrees
+    - **Technical names for the degrees**
     - Choose correct clef for key signature
     - Add accidentals to scales and melodies
     - Recognise key of melody
     - Chromatic scale - find incorrect notes
     - **Name major and minor keys for key signature**
-    - Recognise scales
+    - **Recognise scales**
 - Grade Five:
     - **Keys: Gb, F# major and Eb, D# minor**
     - **Find the correct key signature for a key**
     - Choose correct clef for key signature
     - Add accidentals to scales and melodies
-    - Find degrees of scales
+    - **Find degrees of scales**
     - Complete scales
 
 ### **Intervals**
