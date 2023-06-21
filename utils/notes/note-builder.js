@@ -30,10 +30,9 @@ const NoteBuilder = class {
     }
 
     getRandomNoteFromScale(scale) {
-        let octave = Math.floor(Math.random() * (this.octaveRange[1] - this.octaveRange[0] + 1)) + this.octaveRange[0];
-        let note = scale[Math.floor(Math.random() * 8)]
+        let random = Math.floor(Math.random() * 8);
 
-        return new Note(`${note}${octave}`);
+        return scale[random];
     }
 }
 

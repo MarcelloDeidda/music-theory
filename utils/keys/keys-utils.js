@@ -1,4 +1,4 @@
-const { notes } = require("../notes/notes-utils");
+const { notes, printKeyboard } = require("../notes/notes-utils");
 
 const IntervalCalculator = require("../intervals/interval-calculator");
 const Interval = require("../intervals/interval");
@@ -101,7 +101,7 @@ module.exports.getKeySignature = key => {
 
     return this.printAccidentals(this.keys[tonic.note]);
 }
-
+/*
 module.exports.createScale = (tonic, keySignature) => {
     let index = notes.indexOf(tonic[0].toUpperCase());
     let scale = notes.slice(index).concat(notes.slice(0, index + 1));
@@ -117,4 +117,25 @@ module.exports.createScale = (tonic, keySignature) => {
     }
 
     return scale;
+}*/
+
+module.exports.scaleFromKey = (tonic, keySignature) => {
+    const keyboard = printKeyboard();
+
+    let tonicIndex = keyboard.indexOf(`${tonic.name}${tonic.octave}`);
+    const scale = [];
+
+    for (let i = 0; i < 8; i++) {
+        scale.push(keyboard[tonicIndex + i]);
+    }
+
+    for (let i = 0; i < 8; i++) {
+        for (let acc of keySignature) {
+            if (scale[i].slice(0, scale[i].length - 1) === acc[0]) {
+                scale[i] = acc + scale[i].slice(scale[i].length - 1);
+            }
+        }
+    }
+
+    return scale.map(note => new Note(note));
 }

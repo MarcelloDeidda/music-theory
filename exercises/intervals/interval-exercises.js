@@ -8,11 +8,10 @@ const { qualities } = require("../../utils/intervals/interval-utils");
 
 const noteBuilder = new NoteBuilder(2, 5);
 
-const IntervalExercise = class {
+const IntervalExercises = class {
     constructor(grade = 1) {
         this.grade = grade;
         this.numberOnly = true;
-        this.ascOnly = true;
         this.octaves = [2, 3, 4, 5];
 
         this.keys = KeyBuilder.availableKeys(grade);
@@ -22,10 +21,6 @@ const IntervalExercise = class {
             qualities.perfect,
             qualities.major
         ];
-
-        if (grade > 1) {
-            this.ascOnly = false;
-        }
 
         if (grade > 2) {
             this.numberOnly = false;
@@ -58,13 +53,15 @@ const IntervalExercise = class {
         if (this.grade === 4) {
             let key = this.keys[Math.floor(Math.random() * this.keys.length)];
 
-            note1 = noteBuilder.getRandomNoteFromScale(key.mode === "major" ? key.getAscScale() : key.getAscScale().harmonic);
-            note2 = noteBuilder.getRandomNoteFromScale(key.mode === "major" ? key.getAscScale() : key.getAscScale().harmonic);
+            let tonic = new Note(`${key.tonic}${this.octaves[Math.floor(Math.random() * this.octaves.length)]}`);
+
+            note1 = noteBuilder.getRandomNoteFromScale(key.mode === "major" ? key.getAscScale(tonic) : key.getAscScale(tonic).harmonic);
+            note2 = noteBuilder.getRandomNoteFromScale(key.mode === "major" ? key.getAscScale(tonic) : key.getAscScale(tonic).harmonic);
             interval = IntervalCalculator.calculateInterval(note1, note2);
 
             while (interval.unclassified || interval.compound) {
-                note1 = noteBuilder.getRandomNoteFromScale(key.mode === "major" ? key.getAscScale() : key.getAscScale().harmonic);
-                note2 = noteBuilder.getRandomNoteFromScale(key.mode === "major" ? key.getAscScale() : key.getAscScale().harmonic);
+                note1 = noteBuilder.getRandomNoteFromScale(key.mode === "major" ? key.getAscScale(tonic) : key.getAscScale(tonic).harmonic);
+                note2 = noteBuilder.getRandomNoteFromScale(key.mode === "major" ? key.getAscScale(tonic) : key.getAscScale(tonic).harmonic);
                 interval = IntervalCalculator.calculateInterval(note1, note2);
             }
 
@@ -73,14 +70,14 @@ const IntervalExercise = class {
 
         let key = this.keys[Math.floor(Math.random() * this.keys.length)];
         note1 = new Note(`${key.tonic}${this.octaves[Math.floor(Math.random() * this.octaves.length)]}`);
-        note2 = noteBuilder.getRandomNoteFromScale(key.mode === "major" ? key.getAscScale() : key.getAscScale().harmonic);
+        note2 = noteBuilder.getRandomNoteFromScale(key.mode === "major" ? key.getAscScale(note1) : key.getAscScale(note1).harmonic);
 
         interval = IntervalCalculator.calculateInterval(note1, note2);
         let sortedNotes = sortNotes(note1, note2);
 
         while (interval.compound || note1.fullNote !== sortedNotes[0].fullNote) {
             note1 = new Note(`${key.tonic}${this.octaves[Math.floor(Math.random() * this.octaves.length)]}`);
-            note2 = noteBuilder.getRandomNoteFromScale(key.mode === "major" ? key.getAscScale() : key.getAscScale().harmonic);
+            note2 = noteBuilder.getRandomNoteFromScale(key.mode === "major" ? key.getAscScale(note1) : key.getAscScale(note1).harmonic);
 
             interval = IntervalCalculator.calculateInterval(note1, note2);
             sortedNotes = sortNotes(note1, note2);
@@ -129,4 +126,4 @@ const IntervalExercise = class {
     }
 }
 
-module.exports = IntervalExercise;
+module.exports = IntervalExercises;

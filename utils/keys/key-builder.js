@@ -1,4 +1,3 @@
-const { availableKeys } = require("./keys-utils");
 const { MajorKey, MinorKey } = require("./key");
 
 const KeyBuilder = class {
