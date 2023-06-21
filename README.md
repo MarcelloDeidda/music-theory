@@ -10,7 +10,37 @@ The development of this program is at the earliest stage, which entails gatherin
 
 ## Content
 
-The directory contains a "./utils" folder, in which are stored various functions and classes.
+The directory contains a "./utils" and a "./exercises" folder, which cointain the logic of the program.
+
+### Utils
+
+This folder is organised in four subfolders: "./chords", "./intervals", "./keys", "./notes", "./terms".
+
+#### Chords
+
+The file "./chord-builder.js" cointains a Class with static methods:
+
+- **majorChord(root)** returns a major chord from a single note
+- **minorChord(root)** returns a minor chord from a single note
+- **diminishedChord(root)** returns a diminished chord from a single note
+- **augmentedChord(root)** returns a augmented chord from a single note
+- **dominantSeventhChord(root)** returns a dominant seventh chord from a single note
+- **triadFromKey(degree, tonic, keySignature)** returns a triad of a scale starting at tonic
+
+#### Intervals
+
+The file "./interval-calculator.js" contains a Class with static methods:
+
+- *private* **calculateDistance(firstNote, secondNote)** calculates the number distance between two notes
+- *private* **calculateSemitones(firstNote, secondNote)** calculates the number of semitones between two notes
+- **calculateInterval(firstNote, secondNote)** calculates the interval between two notes
+- **calculateNoteFromInterval(note, interval, asc = true)** finds the note with a distance of **interval** higher or lower (depending on **asc**) than **note**
+
+The file "./interval-utils.js" contains several helper functions and data structs:
+
+- *object* **qualities** contains the five interval qualities
+- *object* **intervalNumbers** contains the interval numbers from *unison* to *octave*
+- *object* **semitonesToIntervals** contains the relationship between semitone count, interval number and interval quality
 
 ### ./note.js
 
@@ -25,7 +55,7 @@ This file contains:
 - the function "createScale", which takes the name of the tonic as a parameter and returns a one-octave ascending scale.
 - the function "printKeyboard", which returns an array containing all the white keys of a piano.
 
-## Topics
+## Concepts
 
 - Pitch:
     - Recognise notes with multiple ledger lines 
@@ -45,15 +75,15 @@ This file contains:
     - Triplets, quintuplets, sextuplets
     - Grouping notes
 - Keys & Scales:
-    - Recognise all major and minor scales 
-    - Degrees of a scale and their names
+    - **Recognise all major and minor scales **
+    - **Degrees of a scale and their names**
     - Tones and Semitones
     - Chromatic scale 
 - Intervals:
-    - Calculating simple and compound intervals X
-    - Classifying perfect, minor, major, diminished and augmented intervals X
+    - **Calculating simple and compound intervals**
+    - **Classifying perfect, minor, major, diminished and augmented intervals**
 - Chords:
-    - Tonic triads in major and minor keys 
+    - **Tonic triads in major and minor keys**
     - Primary chords and primary triads
     - Root position, inversions
     - Cadences
