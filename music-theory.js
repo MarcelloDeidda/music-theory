@@ -3,7 +3,9 @@ const ExerciseHandler = require("./exercises/exercise");
 const Interval = require("./utils/intervals/interval");
 
 const TriadExercises = require("./exercises/chords/triad-exercises");
-const IntervalExercise = require("./exercises/intervals/interval-exercise");
+const IntervalExercises = require("./exercises/intervals/interval-exercises");
+const KeyExercises = require("./exercises/scales/key-exercises");
+const ScaleExercises = require("./exercises/scales/scale-exercises");
 
 const a = new Note("C2");
 const b = new Note("DB2");
@@ -42,10 +44,10 @@ const z = new IntervalExercise(5);
     console.log(z.findNoteFromInterval())
 //}*/
 
-const x = new TriadExercises(5);
+const x = new IntervalExercises(1);
 
-ExerciseHandler.execute(x.completePrimaryTriad())
-/*
+//ExerciseHandler.execute(x.nameScale())
+
 for (let i = 0; i < 300; i++) {
-    console.log(x.completePrimaryTriad())
-}*/
+    console.log(x.findNoteFromInterval())
+}
