@@ -4,6 +4,16 @@ const IntervalCalculator = require("../intervals/interval-calculator");
 const Interval = require("../intervals/interval");
 const Note = require("../notes/note");
 
+module.exports.scaleDegrees = [
+    "tonic",
+    "supertonic",
+    "mediant",
+    "subdominant",
+    "dominant",
+    "submediant",
+    "leading note"
+]
+
 module.exports.keys = {
     "Cb": {
         type: "b",
