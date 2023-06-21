@@ -74,7 +74,7 @@ const MinorKey = class {
         };
 
         descScales.harmonic = descScales.natural.slice();
-        descScales.harmonic[1] = IntervalCalculator.calculateNoteFromInterval(new Note(`${descScales.harmonic[1]}1`), new Interval("1 augmented"));
+        descScales.harmonic[1] = IntervalCalculator.calculateNoteFromInterval(descScales.harmonic[1], new Interval("1 augmented"));
 
         descScales.melodic = descScales.natural.slice();
 
