@@ -18,18 +18,18 @@ This folder is organised in four subfolders: "./chords", "./intervals", "./keys"
 
 #### Chords
 
-The file "./chord-builder.js" cointains a Class with static methods:
+The file "./chord-builder.js" cointains the class ChordBuilder with the following static methods:
 
 - **majorChord(root)** returns a major chord from a single note
 - **minorChord(root)** returns a minor chord from a single note
 - **diminishedChord(root)** returns a diminished chord from a single note
 - **augmentedChord(root)** returns a augmented chord from a single note
 - **dominantSeventhChord(root)** returns a dominant seventh chord from a single note
-- **triadFromKey(degree, tonic, keySignature)** returns a triad of a scale starting at tonic
+- **triadFromKey(degree, tonic, keySignature)** returns a triad of a scale starting at **tonic**
 
 #### Intervals
 
-The file "./interval-calculator.js" contains a Class with static methods:
+The file "./interval-calculator.js" contains the class IntervalCalculator with the following static methods:
 
 - *private* **calculateDistance(firstNote, secondNote)** calculates the number distance between two notes
 - *private* **calculateSemitones(firstNote, secondNote)** calculates the number of semitones between two notes
@@ -41,19 +41,6 @@ The file "./interval-utils.js" contains several helper functions and data struct
 - *object* **qualities** contains the five interval qualities
 - *object* **intervalNumbers** contains the interval numbers from *unison* to *octave*
 - *object* **semitonesToIntervals** contains the relationship between semitone count, interval number and interval quality
-
-### ./note.js
-
-This file exports a Note class, which is constructed via a string containing the name of the note, an accidental (if applicable) and the octave number.
-
-### ./scales.js
-
-This file contains:
-
-- the array "notes", which stores the names of the seven notes, from C to B;
-- the array "chromaticScale", which stores all the notes of the chromatic scale, grouping enharmonic notes into sub-arrays.
-- the function "createScale", which takes the name of the tonic as a parameter and returns a one-octave ascending scale.
-- the function "printKeyboard", which returns an array containing all the white keys of a piano.
 
 ## Concepts
 
@@ -75,7 +62,7 @@ This file contains:
     - Triplets, quintuplets, sextuplets
     - Grouping notes
 - Keys & Scales:
-    - **Recognise all major and minor scales **
+    - **Recognise all major and minor scales**
     - **Degrees of a scale and their names**
     - Tones and Semitones
     - Chromatic scale 
@@ -97,15 +84,56 @@ This file contains:
 
 ## Exercises
 
+### Pitch
+
+- Grade One:
+    - *Name note in treble and bass clef (with/out acc)*
+    - Find the higher note of two (with/out acc)
+    - *Spell words with notes*
+    - *Add clef to note and note name*
+    - Find semitones and tones
+    - Add accidental to make semitones or tones
+- Grade Two:
+    - *Name note with ledger line (up to two)*
+    - Find the higher note of two
+    - *Spell words with notes*
+    - *Add clef to note and note name*
+    - *Rewrite note in different clef*
+- Grade Three:
+    - *Name note with ledger line (up to three)*
+    - Find the higher note of two
+    - *Add clef to note and note name*
+    - *Rewrite note in different clef*
+    - Transpose one octave higher/lower
+- Grade Four:
+    - *Name note in alto clef*
+    - *Add clef to note and note name*
+    - *Rewrite note in different clef*
+    - Double sharp and double flat
+    - Find enharmonic equivalent
+    - Enharmonic equivalente true/false
+    - Transpose one octave higher/lower
+- Grade Five:
+    - *Name note in tenor clef*
+    - *Add clef to note and note name*
+    - *Rewrite note in different clef*
+    - Double sharp and double flat
+    - Find enharmonic equivalent
+    - Enharmonic equivalente true/false
+    - Transpose one octave higher/lower
+    - Transpose a major 2nd, minor 3rd, perfect 5th
+    - Find new key signature
+    - Transposing instruments
+
 ### Keys & Scales
 
 - Grade One:
     - **Keys: C, G, D, F major**
-    - Add notes to complete scale
+    - **Add notes to complete scale**
     - **Find degrees of a scale**
     - Find tones and semitones in a scale
     - **Recognise scales**
-    - Add accidentals to scales
+    - **Add accidentals to scales**
     - **Given a key signature, find the major key**
     - **Select correct key signature for scales**
     - Recognise accidentals,
@@ -114,28 +142,29 @@ This file contains:
 - Grade Two:
     - **Keys: A, Bb, Eb major and A, E, D minor**
     - **Recognise key signatures**
-    - Add accidentals to scales
+    - **Add accidentals to scales**
     - Add accidentals to melodies
     - **Find degrees of scales**
     - Find tones / semitones of scales
     - Find key of given melody
-    - Find relative minors
+    - **Find relative minors**
     - **Harmonic scales**
 - Grade Three:
     - **Keys: E, Ab major and B, F#, C#, G, C, F minor**
-    - Add accidentals to scales
+    - **Add accidentals to scales**
     - **Find degrees of scales**
     - **Recognise key signatures**
     - Add accidentals to melodies
     - **Melodic scales**
-    - Find relative minors
+    - **Find relative minors**
     - **Recognise scales**
     - Select accidentals that aren't needed
 - Grade Four:
     - **Keys: Db, B major and G#, Bb minor**
     - **Technical names for the degrees**
-    - Choose correct clef for key signature
-    - Add accidentals to scales and melodies
+    - *Choose correct clef for key signature*
+    - **Add accidentals to scales**
+    - Add accidentals to melodies
     - Recognise key of melody
     - Chromatic scale - find incorrect notes
     - **Name major and minor keys for key signature**
@@ -143,10 +172,11 @@ This file contains:
 - Grade Five:
     - **Keys: Gb, F# major and Eb, D# minor**
     - **Find the correct key signature for a key**
-    - Choose correct clef for key signature
-    - Add accidentals to scales and melodies
+    - *Choose correct clef for key signature*
+    - **Add accidentals to scales**
+    - Add accidentals to melodies
     - **Find degrees of scales**
-    - Complete scales
+    - **Complete scales**
 
 ### **Intervals**
 

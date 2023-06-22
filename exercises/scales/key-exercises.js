@@ -50,6 +50,15 @@ const KeyExercises = class {
             answers
         }
     }
+
+    findRelative() {
+        const key = this.#getRandomKey();
+
+        let question = `What is the ${key.mode === "major" ? "minor" : "major"} relative of ${key.name}?`;
+        let answers = [key.relative];
+
+        return { question, answers };
+    }
 }
 
 module.exports = KeyExercises;

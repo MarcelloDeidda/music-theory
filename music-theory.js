@@ -44,10 +44,10 @@ const z = new IntervalExercise(5);
     console.log(z.findNoteFromInterval())
 //}*/
 
-const x = new ScaleExercises(3);
+const x = new ScaleExercises(5);
 
-ExerciseHandler.execute(x.nameDegreeOfScale())
+ExerciseHandler.execute(x.addAccidentalsToScale())
 /*
 for (let i = 0; i < 300; i++) {
-    console.log(x.nameDegreeOfScale())
+    console.log(x.addAccidentalsToScale())
 }*/

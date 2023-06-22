@@ -1,8 +1,10 @@
 const KeyBuilder = require("../../utils/keys/key-builder");
-const { scaleDegrees } = require("../../utils/keys/keys-utils");
+const ExerciseHandler = require("../exercise");
 
 const Note = require("../../utils/notes/note");
+
 const { sortNotes } = require("../../utils/notes/notes-utils");
+const { scaleDegrees } = require("../../utils/keys/keys-utils");
 
 const ScaleExercises = class {
     constructor(grade) {
@@ -100,7 +102,7 @@ const ScaleExercises = class {
     }
 
     findDegreeOfScale() {
-        const {note, degree, scaleName, key } = this.#getRandomDegree();
+        const { note, degree, scaleName, key } = this.#getRandomDegree();
 
         let question = `Find the ${degree}${this.grade > 3 ? " " : " degree "}of ${key.mode === "major" ? key.name : scaleName[scaleName.length - 1]}.`
         let answers = [note.note];
@@ -112,10 +114,63 @@ const ScaleExercises = class {
     }
 
     nameDegreeOfScale() {
-        const {note, degree, scaleName, key } = this.#getRandomDegree();
+        const { note, degree, scaleName, key } = this.#getRandomDegree();
 
         let question = `Name the degree of ${note.note} in ${key.mode === "major" ? key.name : scaleName[scaleName.length - 1]}.`
         let answers = [degree.toString()];
+
+        return {
+            question,
+            answers
+        }
+    }
+
+    completeScale() {
+        const { scale, scaleName } = this.#getRandomScale();
+        const randomIndex = [];
+
+        for (let i = 0; i < 3; i++) {
+            let random = Math.floor(Math.random() * 8);
+
+            while (randomIndex.includes(random)) {
+                random = Math.floor(Math.random() * 8);
+            }
+
+            randomIndex.push(random);
+        }
+
+        randomIndex.sort();
+        const missingNotes = [];
+
+        randomIndex.map(num => {
+            missingNotes.push(scale[num].fullNote);
+        });
+
+        const incompleteScale = scale.filter(note => !missingNotes.includes(note.fullNote));
+
+        let question = `Write the missing notes from this ${scaleName[scaleName.length - 1]} scale:\n${incompleteScale.map(note => note.fullNote).join(" ")}`;
+        let answers = [missingNotes.join(" ")];
+
+        return { question, answers };
+    }
+
+    addAccidentalsToScale() {
+        const { scale, scaleName } = this.#getRandomScale();
+
+        let naturalScale = ExerciseHandler.removeAccidentals(scale);
+        let differentNotes = scale.filter(note => {
+            for (let naturalNote of naturalScale) {
+                if (naturalNote.fullNote === note.fullNote) {
+                    return false;
+                }
+            }
+            return true;
+        });
+
+        let question = `Add the accidentals to complete ${scaleName[scaleName.length - 1]}:\n${naturalScale.map(note => note.fullNote).join(" ")}`
+        let answers = [differentNotes.map(note => note.fullNote).join(" ")];
+
+        if (answers[0] === "") { answers = ["none"] }
 
         return {
             question,
