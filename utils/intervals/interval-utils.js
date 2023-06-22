@@ -1,4 +1,4 @@
-const qualities = {
+module.exports.qualities = {
     augmented: "augmented",
     diminished: "diminished",
     perfect: "perfect",
@@ -6,7 +6,7 @@ const qualities = {
     major: "major"
 }
 
-const intervalNumbers = {
+module.exports.intervalNumbers = {
     1: "unison",
     2: "second",
     3: "third",
@@ -17,7 +17,7 @@ const intervalNumbers = {
     8: "octave"
 }
 
-const semitonesToIntervals = {
+module.exports.semitonesToIntervals = {
     0: {
         unison: qualities.perfect,
         second: qualities.diminished,
@@ -69,10 +69,4 @@ const semitonesToIntervals = {
         seventh: qualities.major,
         octave: qualities.diminished
     }
-}
-
-module.exports = {
-    qualities,
-    intervalNumbers,
-    semitonesToIntervals
 }
