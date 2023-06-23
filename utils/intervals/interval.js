@@ -1,37 +1,65 @@
-const { intervalNumbers, semitonesToIntervals } = require("./interval-utils");
+const { intervalNumbers, semitonesToIntervals } = require("./intervals-utils");
 
 const Interval = class {
-    constructor(intervalString, semitones = null) {
-        const interval = intervalString.split(" ");
-        let number = parseInt(interval[0]);
+    #interval;
+    #semitones;
 
-        this.distance = number;
+    constructor(interval, semitones = null) {
+        this.#interval = interval;
+        this.#semitones = semitones;
+    }
 
-        while (number > 8) {
-            number = number % 7;
+    getInterval() {
+        return this.#interval;
+    }
+
+    getDistance() {
+        return parseInt(this.#interval.split(" ")[0]);
+    }
+
+    getSimpleDistance() {
+        let distance = this.getDistance();
+
+        while (distance > 8) {
+            distance = distance % 7;
         }
 
-        this.simpleDistance = number;
-        this.number = intervalNumbers[number];
-        this.compound = this.distance > 8;
+        return distance;
+    }
 
+    getNumber() {
+        let simpleDistance = this.getSimpleDistance();
+
+        return intervalNumbers[simpleDistance];
+    }
+
+    getQuality() {
+        const interval = this.#interval.split(" ");
         if (interval.length > 1) {
-            this.quality = interval[1];
-            this.unclassified = false;
+            return interval[1];
         } else {
-            this.quality = null;
-            this.unclassified = true;
+            return null;
         }
+    }
 
-        if (semitones) {
-            this.semitones = semitones;
+    getSemitones() {
+        if (this.#semitones) {
+            return this.#semitones;
         } else {
             for (let semitoneCount in semitonesToIntervals) {
-                if (semitonesToIntervals[semitoneCount][this.number] === this.quality) {
-                    this.semitones = parseInt(semitoneCount);
+                if (semitonesToIntervals[semitoneCount][this.getNumber()] === this.getQuality()) {
+                    return parseInt(semitoneCount);
                 }
             }
         }
+    }
+
+    isCompound() {
+        return this.getDistance() > 8;
+    }
+
+    isClassified() {
+        return this.getQuality() !== null;
     }
 }
 

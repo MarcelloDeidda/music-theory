@@ -1,6 +1,6 @@
-const { printKeyboard, chromaticScale } = require("../notes/notes-utils");
+const { chromaticScale } = require("../notes/notes-utils");
+const { printKeyboard, sortNotes } = require("../notes/notes-functions");
 const { intervalNumbers, semitonesToIntervals } = require("./interval-utils");
-const { sortNotes } = require("../notes/notes-utils");
 
 const Note = require("../notes/note.js");
 const Interval = require("./interval");
@@ -8,14 +8,14 @@ const Interval = require("./interval");
 const calculateDistance = (firstNote, secondNote) => {
     const keyboard = printKeyboard();
 
-    let indexDifference = keyboard.indexOf(`${secondNote.name}${secondNote.octave}`) - keyboard.indexOf(`${firstNote.name}${firstNote.octave}`)
+    let indexDifference = keyboard.indexOf(`${secondNote.getLetterName()}${secondNote.getOctave()}`) - keyboard.indexOf(`${firstNote.getLetterName()}${firstNote.getOctave()}`)
 
     return Math.abs(indexDifference) + 1;
 }
 
 const calculateSemitones = (firstNote, secondNote) => {
-    let firstNoteIndex = chromaticScale.findIndex(notes => notes.includes(firstNote.note));
-    let secondNoteIndex = chromaticScale.findIndex(notes => notes.includes(secondNote.note));
+    let firstNoteIndex = chromaticScale.findIndex(notes => notes.includes(firstNote.getNoteWithoutOctave()));
+    let secondNoteIndex = chromaticScale.findIndex(notes => notes.includes(secondNote.getNoteWithoutOctave()));
 
     let semitoneInterval = secondNoteIndex - firstNoteIndex;
 
@@ -28,7 +28,7 @@ const calculateSemitones = (firstNote, secondNote) => {
 
 module.exports.calculateInterval = (firstNote, secondNote) => {
     // Calculate simple and compound interval
-    let distance = this.#calculateDistance(firstNote, secondNote);
+    let distance = calculateDistance(firstNote, secondNote);
     let simpleDistance = distance;
 
     while (simpleDistance > 8) {
@@ -37,7 +37,7 @@ module.exports.calculateInterval = (firstNote, secondNote) => {
 
     // Calculate semitones
     const notesAscending = sortNotes(firstNote, secondNote);
-    let semitones = this.#calculateSemitones(...notesAscending);
+    let semitones = calculateSemitones(...notesAscending);
     let number = intervalNumbers[simpleDistance];
     let quality = semitonesToIntervals[semitones][number];
 
@@ -48,8 +48,8 @@ module.exports.calculateInterval = (firstNote, secondNote) => {
 
 module.exports.calculateNoteFromInterval = (note, interval, asc = true) => {
     const keyboard = printKeyboard();
-    let chromaticIndex = chromaticScale.findIndex(notes => notes.includes(note.note));
-    let semitones = interval.semitones;
+    let chromaticIndex = chromaticScale.findIndex(notes => notes.includes(note.getNoteWithoutOctave()));
+    let semitones = interval.getSemitones();
 
     if (asc) {
         while (semitones > 0) {
@@ -71,13 +71,13 @@ module.exports.calculateNoteFromInterval = (note, interval, asc = true) => {
         }
     }
 
-    let name = `${note.name}${note.octave}`;
+    let name = `${note.getLetterName()}${note.getOctave()}`;
     let newNaturalNote;
 
     if (asc) {
-        newNaturalNote = keyboard[keyboard.indexOf(name) + interval.distance - 1];
+        newNaturalNote = keyboard[keyboard.indexOf(name) + interval.getDistance() - 1];
     } else {
-        newNaturalNote = keyboard[keyboard.indexOf(name) - interval.distance + 1];
+        newNaturalNote = keyboard[keyboard.indexOf(name) - interval.getDistance() + 1];
     }
 
     let chromaticAlterationIndex = chromaticScale[chromaticIndex].findIndex(note => note[0] === newNaturalNote[0]);
