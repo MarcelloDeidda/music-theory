@@ -18,7 +18,7 @@ This folder is organised in four subfolders: "./chords", "./intervals", "./keys"
 
 #### Chords
 
-The file "./chord-builder.js" cointains the class ChordBuilder with the following static methods:
+The file "./chord-builder.js" cointains the class ChordBuilder with the following methods:
 
 - **majorChord(root)** returns a major chord from a single note
 - **minorChord(root)** returns a minor chord from a single note
