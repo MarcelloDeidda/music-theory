@@ -52,7 +52,7 @@ ExerciseHandler.execute(x.addAccidentalsToScale())*/
 for (let i = 0; i < 300; i++) {
     console.log(x.addAccidentalsToScale())
 }*/
-
+/*
 let cMajor = new Key("Eb minor");
 let note = new Note("Eb3");
 
@@ -98,4 +98,4 @@ for (let i = 1; i <= 7; i++) {
         console.log(note.getNote())
     }
     console.log("")
-}
+}*/
