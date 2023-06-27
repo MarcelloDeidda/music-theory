@@ -5,7 +5,7 @@ const { startingDegrees } = require("./melody-utils");
 const Note = require("../notes/note");
 const Key = require("../keys/key");
 
-module.exports.writeRandomMelody = (grade, octave) => {
+module.exports.writeRandomMelody = (grade, octave, numOfNotes) => {
     const melody = [];
 
     const key = Key.getRandomKey(grade);
@@ -17,13 +17,13 @@ module.exports.writeRandomMelody = (grade, octave) => {
 
     melody.push(note);
 
-    for (let i = 0; i < 11; i++) {
+    while (melody.length < numOfNotes) {
         note = getRandomNoteFromScale(scale);
 
         let interval = calculateInterval(melody[melody.length - 1], note);
 
         while (
-            interval.getDistance() > 3 ||
+            interval.getDistance() > 4 ||
             note.getNote() === melody[melody.length - 1].getNote() ||
             !["major", "perfect", "minor"].includes(interval.getQuality())
         ) {
@@ -34,10 +34,5 @@ module.exports.writeRandomMelody = (grade, octave) => {
         melody.push(note);
     }
 
-    return {
-        melody: melody.map(note => note.getNote()),
-        key: key.getName()
-    };
+    return { melody, key };
 }
-
-console.log(this.writeRandomMelody(5, 3));
