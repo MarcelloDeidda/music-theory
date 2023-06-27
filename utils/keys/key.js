@@ -1,12 +1,161 @@
-const IntervalCalculator = require("../intervals/interval-calculator");
-const ChordBuilder = require("../chords/chord-builder");
+const { calculateNoteFromInterval } = require("../intervals/intervals-functions");
+const { triadFromKey } = require("../chords/chords-functions");
+const { getKeySignature, scaleFromKey } = require("./keys-functions");
 
-const Interval = require("../intervals/interval");
 const Note = require("../notes/note");
+const Interval = require("../intervals/interval");
 
-const { scaleFromKey, getKeySignature } = require("./keys-utils");
+const Key = class {
+    #name;
 
-const MajorKey = class {
+    constructor(name) {
+        this.#name = name;
+    }
+
+    getName() {
+        return this.#name;
+    }
+
+    getTonic() {
+        let keyInfo = this.#name.split(" ");
+        return keyInfo[0];
+    }
+
+    getMode() {
+        let keyInfo = this.#name.split(" ");
+        return keyInfo[1];
+    }
+
+    getRelative() {
+        let mode = this.getMode();
+        if (mode === "major") {
+            return `${this.getDegree(6)} minor`;
+        } else {
+            return `${this.getDegree(3)} major`;
+        }
+    }
+
+    getKeySignature() {
+        return getKeySignature(this.#name);
+    }
+
+    getAscScale(tonic) {
+        if (this.getMode() === "major") {
+            return scaleFromKey(tonic, this.getKeySignature());
+        } else {
+            const ascScales = {
+                natural: scaleFromKey(tonic, this.getKeySignature())
+            };
+
+            ascScales.harmonic = ascScales.natural.slice();
+            ascScales.harmonic[6] = calculateNoteFromInterval(ascScales.harmonic[6], new Interval("1 augmented"));
+
+            ascScales.melodic = ascScales.harmonic.slice();
+            ascScales.melodic[5] = calculateNoteFromInterval(ascScales.melodic[5], new Interval("1 augmented"));
+
+            return ascScales;
+        }
+    }
+
+    getDescScale(tonic) {
+        if (this.getMode() === "major") {
+            return scaleFromKey(tonic, this.getKeySignature()).sort(() => -1);
+        } else {
+            const descScales = {
+                natural: scaleFromKey(tonic, this.getKeySignature()).sort(() => -1)
+            };
+
+            descScales.harmonic = descScales.natural.slice();
+            descScales.harmonic[1] = calculateNoteFromInterval(descScales.harmonic[1], new Interval("1 augmented"));
+
+            descScales.melodic = descScales.natural.slice();
+
+            return descScales;
+        }
+    }
+
+    getDegree(degree) {
+        let tonic = new Note(`${this.getTonic()}3`)
+        const scale = this.getAscScale(tonic);
+        if (this.getMode() === "major") {
+            return scale[degree - 1].getNoteWithoutOctave();
+        } else {
+            return scale.harmonic[degree - 1].getNoteWithoutOctave();
+        }
+    }
+
+    getTriad(degree, tonic) {
+        let triad = triadFromKey(degree, tonic, this.getKeySignature());
+
+        if (this.getMode() === "minor") {
+            let seventh = this.getDegree(7)[0];
+
+            return triad.map(note => {
+                if (note.getLetterName() === seventh) {
+                    return calculateNoteFromInterval(note, new Interval("1 augmented"));
+                } else {
+                    return note;
+                }
+            });
+        }
+        return triad;
+    }
+
+    static availableKeys(grade) {
+        const keys = [
+            new Key("C major"),
+            new Key("G major"),
+            new Key("D major"),
+            new Key("F major"),
+        ]
+
+        if (grade > 1) {
+            [
+                "A major",
+                "Bb major",
+                "Eb major",
+                "A minor",
+                "E minor",
+                "D minor"
+            ].map(tonic => keys.push(new Key(tonic)));
+        }
+
+        if (grade > 2) {
+            [
+                "Ab major",
+                "E major",
+                "B minor",
+                "F# minor",
+                "C# minor",
+                "G minor",
+                "C minor",
+                "F minor"
+            ].map(tonic => keys.push(new Key(tonic)));
+        }
+
+        if (grade > 3) {
+            [
+                "Db major",
+                "B major",
+                "Bb minor",
+                "G# minor"
+            ].map(tonic => keys.push(new Key(tonic)));
+        }
+
+        if (grade > 4) {
+            [
+                "Gb major",
+                "F# major",
+                "Eb minor",
+                "D# minor"
+            ].map(tonic => keys.push(new Key(tonic)));
+        }
+
+        return keys;
+    }
+}
+/*
+const MajrKey = class {
     constructor(tonic) {
         this.tonic = tonic;
         this.mode = "major";
@@ -16,7 +165,7 @@ const MajorKey = class {
     }
 
     getAscScale(tonic) {
-        return scaleFromKey(tonic, this.keySignature);
+
     }
 
     getDescScale(tonic) {
@@ -37,7 +186,7 @@ const MajorKey = class {
     
             return triads;
         }
-    */
+    
     getTriad(degree, tonic) {
         let triad = ChordBuilder.triadFromKey(degree, tonic, this.keySignature);
 
@@ -95,7 +244,7 @@ const MinorKey = class {
     
             return triads;
         }
-    */
+    
     getTriad(degree, tonic) {
         // If tonic doesn't correspond, throw error
         let triad = ChordBuilder.triadFromKey(degree, tonic, this.mode);
@@ -110,8 +259,5 @@ const MinorKey = class {
         });
     }
 }
-
-module.exports = {
-    MajorKey,
-    MinorKey
-}
+*/
+module.exports = Key;

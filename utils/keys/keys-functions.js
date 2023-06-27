@@ -1,6 +1,8 @@
-const { notes, printKeyboard } = require("../notes/notes-utils");
-const { MajorKey, MinorKey } = require("./key");
-const IntervalCalculator = require("../intervals/interval-calculator");
+const { notes } = require("../notes/notes-utils");
+const { printKeyboard } = require("../notes/notes-functions");
+const { calculateNoteFromInterval } = require("../intervals/intervals-functions");
+const { keys, accidentalsIndexes } = require("./keys-utils");
+
 const Interval = require("../intervals/interval");
 const Note = require("../notes/note");
 
@@ -9,11 +11,11 @@ module.exports.printAccidentals = keyConfig => {
 
     if (keyConfig.type === "#") {
         for (let i = 0; i < keyConfig.number; i++) {
-            accidentals.push(`${notes[this.accidentalsIndexes[i]]}#`);
+            accidentals.push(`${notes[accidentalsIndexes[i]]}#`);
         }
     } else if (keyConfig.type === "b") {
         for (let i = 0; i < keyConfig.number; i++) {
-            accidentals.push(`${notes[this.accidentalsIndexes[this.accidentalsIndexes.length - i - 1]]}b`);
+            accidentals.push(`${notes[accidentalsIndexes[accidentalsIndexes.length - i - 1]]}b`);
         }
     }
 
@@ -27,14 +29,12 @@ module.exports.getKeySignature = key => {
     let mode = keyInfo[1];
 
     if (mode === "major") {
-        tonic = {
-            note: keyInfo[0]
-        };
+        tonic = new Note(`${keyInfo[0]}1`);
     } else if (mode === "minor") {
-        tonic = IntervalCalculator.calculateNoteFromInterval(new Note(`${keyInfo[0]}1`), new Interval("3 minor"));
+        tonic = calculateNoteFromInterval(new Note(`${keyInfo[0]}1`), new Interval("3 minor"));
     }
 
-    return this.printAccidentals(this.keys[tonic.note]);
+    return this.printAccidentals(keys[tonic.getNoteWithoutOctave()]);
 }
 /*
 module.exports.createScale = (tonic, keySignature) => {
@@ -57,7 +57,7 @@ module.exports.createScale = (tonic, keySignature) => {
 module.exports.scaleFromKey = (tonic, keySignature) => {
     const keyboard = printKeyboard();
 
-    let tonicIndex = keyboard.indexOf(`${tonic.name}${tonic.octave}`);
+    let tonicIndex = keyboard.indexOf(`${tonic.getLetterName()}${tonic.getOctave()}`);
     const scale = [];
 
     for (let i = 0; i < 8; i++) {
@@ -75,33 +75,7 @@ module.exports.scaleFromKey = (tonic, keySignature) => {
     return scale.map(note => new Note(note));
 }
 
-module.exports.availableKeys = grade => {
-    const keys = [
-        new MajorKey("C"),
-        new MajorKey("G"),
-        new MajorKey("D"),
-        new MajorKey("F"),
-    ]
-
-    if (grade > 1) {
-        ["A", "Bb", "Eb"].map(tonic => keys.push(new MajorKey(tonic)));
-        ["A", "E", "D"].map(tonic => keys.push(new MinorKey(tonic)));
-    }
-
-    if (grade > 2) {
-        ["Ab", "E"].map(tonic => keys.push(new MajorKey(tonic)));
-        ["B", "F#", "C#", "G", "C", "F"].map(tonic => keys.push(new MinorKey(tonic)));
-    }
-
-    if (grade > 3) {
-        ["Db", "B"].map(tonic => keys.push(new MajorKey(tonic)));
-        ["Bb", "G#"].map(tonic => keys.push(new MinorKey(tonic)));
-    }
-
-    if (grade > 4) {
-        ["Gb", "F#"].map(tonic => keys.push(new MajorKey(tonic)));
-        ["Eb", "D#"].map(tonic => keys.push(new MinorKey(tonic)));
-    }
-
-    return keys;
+module.exports.getRandomKey = availableKeys => {
+    let random = Math.floor(Math.random() * availableKeys.length);
+    return availableKeys[random];
 }

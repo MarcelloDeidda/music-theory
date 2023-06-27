@@ -1,6 +1,6 @@
 const { chromaticScale } = require("../notes/notes-utils");
 const { printKeyboard, sortNotes } = require("../notes/notes-functions");
-const { intervalNumbers, semitonesToIntervals } = require("./interval-utils");
+const { intervalNumbers, semitonesToIntervals } = require("./intervals-utils");
 
 const Note = require("../notes/note.js");
 const Interval = require("./interval");
