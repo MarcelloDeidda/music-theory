@@ -1,6 +1,7 @@
 const { calculateNoteFromInterval } = require("../intervals/intervals-functions");
 const { triadFromKey } = require("../chords/chords-functions");
 const { getKeySignature, scaleFromKey } = require("./keys-functions");
+const { keys } = require("./keys-utils");
 
 const Note = require("../notes/note");
 const Interval = require("../intervals/interval");
@@ -102,7 +103,7 @@ const Key = class {
     }
 
     static availableKeys(grade) {
-        const keys = [
+        const keyList = [
             new Key("C major"),
             new Key("G major"),
             new Key("D major"),
@@ -117,7 +118,7 @@ const Key = class {
                 "A minor",
                 "E minor",
                 "D minor"
-            ].map(tonic => keys.push(new Key(tonic)));
+            ].map(tonic => keyList.push(new Key(tonic)));
         }
 
         if (grade > 2) {
@@ -130,7 +131,7 @@ const Key = class {
                 "G minor",
                 "C minor",
                 "F minor"
-            ].map(tonic => keys.push(new Key(tonic)));
+            ].map(tonic => keyList.push(new Key(tonic)));
         }
 
         if (grade > 3) {
@@ -139,7 +140,7 @@ const Key = class {
                 "B major",
                 "Bb minor",
                 "G# minor"
-            ].map(tonic => keys.push(new Key(tonic)));
+            ].map(tonic => keyList.push(new Key(tonic)));
         }
 
         if (grade > 4) {
@@ -148,17 +149,28 @@ const Key = class {
                 "F# major",
                 "Eb minor",
                 "D# minor"
-            ].map(tonic => keys.push(new Key(tonic)));
+            ].map(tonic => keyList.push(new Key(tonic)));
         }
 
-        return keys;
+        return keyList;
     }
 
     static getRandomKey(grade) {
-        const keys = this.availableKeys(grade);
+        const keyList = this.availableKeys(grade);
 
-        let random = Math.floor(Math.random() * keys.length);
-        return keys[random];
+        let random = Math.floor(Math.random() * keyList.length);
+        return keyList[random];
+    }
+
+    static getAllKeys() {
+        const keyList = [];
+        for (let key in keys) {
+            const newKey = new Key(`${key} major`);
+            keyList.push(newKey);
+            keyList.push(new Key(newKey.getRelative()));
+        }
+
+        return keyList;
     }
 }
 

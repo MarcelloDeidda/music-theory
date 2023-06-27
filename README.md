@@ -136,17 +136,17 @@ The file "./interval-utils.js" contains several helper functions and data struct
     - **Add accidentals to scales**
     - **Given a key signature, find the major key**
     - **Select correct key signature for scales**
-    - Recognise accidentals,
-    - Given a melody with accidentals, recognise the key
-    - Select notes that need accidental to create melody in given key
+    - *Recognise accidentals*
+    - **Given a melody with accidentals, recognise the key**
+    - **Select notes that need accidental to create melody in given key**
 - Grade Two:
     - **Keys: A, Bb, Eb major and A, E, D minor**
     - **Recognise key signatures**
     - **Add accidentals to scales**
-    - Add accidentals to melodies
+    - **Add accidentals to melodies**
     - **Find degrees of scales**
     - Find tones / semitones of scales
-    - Find key of given melody
+    - **Find key of given melody**
     - **Find relative minors**
     - **Harmonic scales**
 - Grade Three:
@@ -154,7 +154,7 @@ The file "./interval-utils.js" contains several helper functions and data struct
     - **Add accidentals to scales**
     - **Find degrees of scales**
     - **Recognise key signatures**
-    - Add accidentals to melodies
+    - **Add accidentals to melodies**
     - **Melodic scales**
     - **Find relative minors**
     - **Recognise scales**
@@ -164,8 +164,8 @@ The file "./interval-utils.js" contains several helper functions and data struct
     - **Technical names for the degrees**
     - *Choose correct clef for key signature*
     - **Add accidentals to scales**
-    - Add accidentals to melodies
-    - Recognise key of melody
+    - **Add accidentals to melodies**
+    - **Recognise key of melody**
     - Chromatic scale - find incorrect notes
     - **Name major and minor keys for key signature**
     - **Recognise scales**
@@ -174,7 +174,7 @@ The file "./interval-utils.js" contains several helper functions and data struct
     - **Find the correct key signature for a key**
     - *Choose correct clef for key signature*
     - **Add accidentals to scales**
-    - Add accidentals to melodies
+    - **Add accidentals to melodies**
     - **Find degrees of scales**
     - **Complete scales**
 
