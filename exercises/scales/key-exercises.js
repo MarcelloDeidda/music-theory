@@ -1,29 +1,25 @@
-const KeyBuilder = require("../../utils/keys/key-builder");
+const Key = require("../../utils/keys/key");
 
 const KeyExercises = class {
-    constructor(grade) {
-        this.grade = grade;
-        this.keys = KeyBuilder.availableKeys(grade)
-    }
+    #grade;
 
-    #getRandomKey() {
-        let random = Math.floor(Math.random() * this.keys.length);
-        return this.keys[random];
+    constructor(grade) {
+        this.#grade = grade;
     }
 
     findKeyFromSignature() {
-        const key = this.#getRandomKey();
+        const key = Key.getRandomKey(this.#grade);
 
         let question, answers, keySignature;
 
-        if (key.keySignature.length > 0) {
-            keySignature = key.keySignature.join(" ");
+        if (key.getKeySignature().length > 0) {
+            keySignature = key.getKeySignature().join(" ");
         } else {
             keySignature = "none";
         }
 
-        question = `Name the ${key.mode} key that has this key signature: ${keySignature}`;
-        answers = [key.name];
+        question = `Name the ${key.getMode()} key that has this key signature: ${keySignature}`;
+        answers = [key.getName()];
 
         return {
             question,
@@ -32,17 +28,17 @@ const KeyExercises = class {
     }
 
     findSignatureFromKey() {
-        const key = this.#getRandomKey();
+        const key = Key.getRandomKey(this.#grade);
 
         let question, answers, keySignature;
 
-        if (key.keySignature.length > 0) {
-            keySignature = key.keySignature.join(" ");
+        if (key.getKeySignature().length > 0) {
+            keySignature = key.getKeySignature().join(" ");
         } else {
             keySignature = "none";
         }
 
-        question = `Write the accidentals in the key signature of ${key.name}`;
+        question = `Write the accidentals in the key signature of ${key.getName()}`;
         answers = [keySignature];
 
         return {
@@ -52,10 +48,10 @@ const KeyExercises = class {
     }
 
     findRelative() {
-        const key = this.#getRandomKey();
+        const key = Key.getRandomKey(this.#grade);
 
-        let question = `What is the ${key.mode === "major" ? "minor" : "major"} relative of ${key.name}?`;
-        let answers = [key.relative];
+        let question = `What is the ${key.getMode() === "major" ? "minor" : "major"} relative of ${key.getName()}?`;
+        let answers = [key.getRelative()];
 
         return { question, answers };
     }
