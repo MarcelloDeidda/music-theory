@@ -1,6 +1,6 @@
 //const TriadExercises = require("./exercises/chords/triad-exercises");
-//const IntervalExercises = require("./exercises/intervals/interval-exercises");
-const KeyExercises = require("./exercises/scales/key-exercises");
+const IntervalExercises = require("./exercises/intervals/interval-exercises");
+//const KeyExercises = require("./exercises/scales/key-exercises");
 // const ScaleExercises = require("./exercises/scales/scale-exercises");
 
 const { execute } = require("./exercises/exercises-functions");
@@ -22,11 +22,11 @@ const notes = [b];
 const intervals = [i1, i2, i3, i4];
 */
 
-const x = new KeyExercises(5);
+const x = new IntervalExercises(1);
 
 //execute(x.findKeyOfMelody())
 
 for (let i = 0; i < 300; i++) {
-    console.log(x.addAccidentalsToMelody())
+    console.log(x.findNoteFromInterval())
 }
 
