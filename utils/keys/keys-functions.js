@@ -74,8 +74,3 @@ module.exports.scaleFromKey = (tonic, keySignature) => {
 
     return scale.map(note => new Note(note));
 }
-
-module.exports.getRandomKey = availableKeys => {
-    let random = Math.floor(Math.random() * availableKeys.length);
-    return availableKeys[random];
-}
