@@ -35,7 +35,7 @@ module.exports.tamperChord = notes => {
     let newNoteIndex = Math.floor(Math.random() * notes.length);
     let asc = Math.floor(Math.random() * 2) === 1 ? true : false;
 
-    let newNote = calculateNoteFromInterval(newNotes[newNoteIndex], new Interval("1 augmented"), asc);
+    let newNote = calculateNoteFromInterval(newNotes[newNoteIndex], new Interval("augmented 1"), asc);
     newNotes[newNoteIndex] = newNote;
     return newNotes;
 }
@@ -45,13 +45,31 @@ module.exports.tamperChordNoDouble = notes => {
     let newNoteIndex = Math.floor(Math.random() * notes.length);
     let asc = Math.floor(Math.random() * 2) === 1 ? true : false;
 
-    let newNote = calculateNoteFromInterval(newNotes[newNoteIndex], new Interval("1 augmented"), asc);
+    let newNote = calculateNoteFromInterval(newNotes[newNoteIndex], new Interval("augmented 1"), asc);
 
     while (newNote.getAccidentalInSemitones() < -1 || newNote.getAccidentalInSemitones() > 1) {
         newNoteIndex = Math.floor(Math.random() * notes.length);
         asc = Math.floor(Math.random() * 2) === 1 ? true : false;
 
-        newNote = calculateNoteFromInterval(newNotes[newNoteIndex], new Interval("1 augmented"), asc);
+        newNote = calculateNoteFromInterval(newNotes[newNoteIndex], new Interval("augmented 1"), asc);
+    }
+
+    newNotes[newNoteIndex] = newNote;
+    return newNotes;
+}
+
+module.exports.tamperMelodyNoDouble = (notes) => {
+    let newNotes = notes.slice();
+    let newNoteIndex = Math.floor(Math.random() * notes.length);
+    let asc = Math.floor(Math.random() * 2) === 1 ? true : false;
+
+    let newNote = calculateNoteFromInterval(newNotes[newNoteIndex], new Interval("major 2"), asc);
+
+    while (newNote.getAccidentalInSemitones() < -1 || newNote.getAccidentalInSemitones() > 1) {
+        newNoteIndex = Math.floor(Math.random() * notes.length);
+        asc = Math.floor(Math.random() * 2) === 1 ? true : false;
+
+        newNote = calculateNoteFromInterval(newNotes[newNoteIndex], new Interval("major 2"), asc);
     }
 
     newNotes[newNoteIndex] = newNote;

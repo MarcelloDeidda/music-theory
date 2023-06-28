@@ -104,7 +104,7 @@ The file "./interval-utils.js" contains several helper functions and data struct
     - Find the higher note of two
     - *Add clef to note and note name*
     - *Rewrite note in different clef*
-    - Transpose one octave higher/lower
+    - **Transpose one octave higher/lower**
 - Grade Four:
     - *Name note in alto clef*
     - *Add clef to note and note name*
@@ -112,7 +112,7 @@ The file "./interval-utils.js" contains several helper functions and data struct
     - Double sharp and double flat
     - Find enharmonic equivalent
     - Enharmonic equivalente true/false
-    - Transpose one octave higher/lower
+    - **Transpose one octave higher/lower**
 - Grade Five:
     - *Name note in tenor clef*
     - *Add clef to note and note name*
@@ -120,7 +120,7 @@ The file "./interval-utils.js" contains several helper functions and data struct
     - Double sharp and double flat
     - Find enharmonic equivalent
     - Enharmonic equivalente true/false
-    - Transpose one octave higher/lower
+    - **Transpose one octave higher/lower**
     - Transpose a major 2nd, minor 3rd, perfect 5th
     - Find new key signature
     - Transposing instruments

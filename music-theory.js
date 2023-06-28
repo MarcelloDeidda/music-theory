@@ -1,7 +1,8 @@
-const TriadExercises = require("./exercises/chords/triad-exercises");
+// const TriadExercises = require("./exercises/chords/triad-exercises");
 // const IntervalExercises = require("./exercises/intervals/interval-exercises");
 //const KeyExercises = require("./exercises/scales/key-exercises");
 // const ScaleExercises = require("./exercises/scales/scale-exercises");
+const PitchExercises = require("./exercises/pitch/PitchExercises");
 
 const { execute } = require("./exercises/exercises-functions");
 
@@ -24,11 +25,11 @@ const intervals = [i1, i2, i3, i4];
 
 let x;
 
-for (let i = 1; i <= 5; i++) {
-    x = new TriadExercises(i);
+for (let i = 1; i <= 1; i++) {
+    x = new PitchExercises(i);
 
     for (let i = 0; i < 300; i++) {
-        console.log(x.completePrimaryTriad())
+        console.log(x.checkTransposedMelodyByOctave())
     }
 }
 
