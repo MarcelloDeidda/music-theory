@@ -47,6 +47,12 @@ module.exports.sortNotes = (...noteList) => {
     return newNoteList;
 }
 
+module.exports.isNoteHigher = (note1, note2) => {
+    const sortedNotes = this.sortNotes(note1, note2);
+
+    return note1.getNote() === sortedNotes[0].getNote();
+}
+
 module.exports.getRandomNote = (lowOctave, highOctave) => {
     let octave = Math.floor(Math.random() * (highOctave - lowOctave + 1)) + lowOctave;
     let note = notes[Math.floor(Math.random() * 7)];

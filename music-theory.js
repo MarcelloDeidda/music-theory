@@ -29,7 +29,7 @@ for (let i = 1; i <= 5; i++) {
     x = new PitchExercises(i);
 
     for (let i = 0; i < 300; i++) {
-        console.log(x.checkTransposedMelody())
+        console.log(x.isNoteHigher())
     }
 }
 

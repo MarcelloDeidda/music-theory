@@ -88,20 +88,20 @@ The file "./interval-utils.js" contains several helper functions and data struct
 
 - Grade One:
     - *Name note in treble and bass clef (with/out acc)*
-    - Find the higher note of two (with/out acc)
+    - **Find the higher note of two (with/out acc)**
     - *Spell words with notes*
     - *Add clef to note and note name*
     - Find semitones and tones
     - Add accidental to make semitones or tones
-- Grade Two:
+- **Grade Two:**
     - *Name note with ledger line (up to two)*
-    - Find the higher note of two
+    - **Find the higher note of two**
     - *Spell words with notes*
     - *Add clef to note and note name*
     - *Rewrite note in different clef*
-- Grade Three:
+- **Grade Three:**
     - *Name note with ledger line (up to three)*
-    - Find the higher note of two
+    - **Find the higher note of two**
     - *Add clef to note and note name*
     - *Rewrite note in different clef*
     - **Transpose one octave higher/lower**
