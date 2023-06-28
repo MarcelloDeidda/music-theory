@@ -36,23 +36,6 @@ module.exports.getKeySignature = key => {
 
     return this.printAccidentals(keys[tonic.getNoteWithoutOctave()]);
 }
-/*
-module.exports.createScale = (tonic, keySignature) => {
-    let index = notes.indexOf(tonic[0].toUpperCase());
-    let scale = notes.slice(index).concat(notes.slice(0, index + 1));
-
-    for (let acc of keySignature) {
-        scale = scale.map(note => {
-            if (note === acc[0]) {
-                return acc;
-            } else {
-                return note;
-            }
-        });
-    }
-
-    return scale;
-}*/
 
 module.exports.scaleFromKey = (tonic, keySignature) => {
     const keyboard = printKeyboard();
