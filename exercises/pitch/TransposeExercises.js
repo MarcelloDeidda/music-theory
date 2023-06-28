@@ -171,7 +171,7 @@ const TransposeExercises = class {
         question = `Transpose the following key signature a ${interval.getInterval()} ${asc ? "higher" : "lower"}:
         ${keySignature1.join(" ")}`
 
-        answers = [keySignature2.join(" ")];
+        answers = [keySignature2.length > 0 ? keySignature2.join(" ") : "none"];
 
         return { question, answers }
     }
