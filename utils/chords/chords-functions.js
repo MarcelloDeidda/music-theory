@@ -6,41 +6,41 @@ const Note = require("../notes/note");
 
 
 module.exports.majorChord = root => {
-    let third = calculateNoteFromInterval(root, new Interval("3 major"));
-    let fifth = calculateNoteFromInterval(root, new Interval("5 perfect"));
+    let third = calculateNoteFromInterval(root, new Interval("major 3"));
+    let fifth = calculateNoteFromInterval(root, new Interval("perfect 5"));
 
     return [root, third, fifth];
 }
 
 module.exports.minorChord = root => {
     // The parameter "root" MUST be a Note object
-    let third = calculateNoteFromInterval(root, new Interval("3 minor"));
-    let fifth = calculateNoteFromInterval(root, new Interval("5 perfect"));
+    let third = calculateNoteFromInterval(root, new Interval("minor 3"));
+    let fifth = calculateNoteFromInterval(root, new Interval("perfect 5"));
 
     return [root, third, fifth];
 }
 
 module.exports.diminishedChord = root => {
     // The parameter "root" MUST be a Note object
-    let third = calculateNoteFromInterval(root, new Interval("3 minor"));
-    let fifth = calculateNoteFromInterval(root, new Interval("5 diminished"));
+    let third = calculateNoteFromInterval(root, new Interval("minor 3"));
+    let fifth = calculateNoteFromInterval(root, new Interval("diminished 5"));
 
     return [root, third, fifth];
 }
 
 module.exports.augmentedChord = root => {
     // The parameter "root" MUST be a Note object
-    let third = calculateNoteFromInterval(root, new Interval("3 major"));
-    let fifth = calculateNoteFromInterval(root, new Interval("5 augmented"));
+    let third = calculateNoteFromInterval(root, new Interval("major 3"));
+    let fifth = calculateNoteFromInterval(root, new Interval("augmented 5"));
 
     return [root, third, fifth];
 }
 
 module.exports.dominantSeventh = root => {
     // The parameter "root" MUST be a Note object
-    let third = calculateNoteFromInterval(root, new Interval("3 major"));
-    let fifth = calculateNoteFromInterval(root, new Interval("5 perfect"));
-    let seventh = calculateNoteFromInterval(root, new Interval("7 minor"));
+    let third = calculateNoteFromInterval(root, new Interval("major 3"));
+    let fifth = calculateNoteFromInterval(root, new Interval("perfect 5"));
+    let seventh = calculateNoteFromInterval(root, new Interval("minor 7"));
 
     return [root, third, fifth, seventh];
 }

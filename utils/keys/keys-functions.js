@@ -31,7 +31,7 @@ module.exports.getKeySignature = key => {
     if (mode === "major") {
         tonic = new Note(`${keyInfo[0]}1`);
     } else if (mode === "minor") {
-        tonic = calculateNoteFromInterval(new Note(`${keyInfo[0]}1`), new Interval("3 minor"));
+        tonic = calculateNoteFromInterval(new Note(`${keyInfo[0]}1`), new Interval("minor 3"));
     }
 
     return this.printAccidentals(keys[tonic.getNoteWithoutOctave()]);

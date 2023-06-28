@@ -49,10 +49,10 @@ const Key = class {
             };
 
             ascScales.harmonic = ascScales.natural.slice();
-            ascScales.harmonic[6] = calculateNoteFromInterval(ascScales.harmonic[6], new Interval("1 augmented"));
+            ascScales.harmonic[6] = calculateNoteFromInterval(ascScales.harmonic[6], new Interval("augmented 1"));
 
             ascScales.melodic = ascScales.harmonic.slice();
-            ascScales.melodic[5] = calculateNoteFromInterval(ascScales.melodic[5], new Interval("1 augmented"));
+            ascScales.melodic[5] = calculateNoteFromInterval(ascScales.melodic[5], new Interval("augmented 1"));
 
             return ascScales;
         }
@@ -67,7 +67,7 @@ const Key = class {
             };
 
             descScales.harmonic = descScales.natural.slice();
-            descScales.harmonic[1] = calculateNoteFromInterval(descScales.harmonic[1], new Interval("1 augmented"));
+            descScales.harmonic[1] = calculateNoteFromInterval(descScales.harmonic[1], new Interval("augmented 1"));
 
             descScales.melodic = descScales.natural.slice();
 
@@ -93,7 +93,7 @@ const Key = class {
 
             return triad.map(note => {
                 if (note.getLetterName() === seventh) {
-                    return calculateNoteFromInterval(note, new Interval("1 augmented"));
+                    return calculateNoteFromInterval(note, new Interval("augmented 1"));
                 } else {
                     return note;
                 }
