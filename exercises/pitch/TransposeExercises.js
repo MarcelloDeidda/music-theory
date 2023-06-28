@@ -1,8 +1,12 @@
 const { writeRandomMelody } = require("../../utils/melody/melody-functions");
 const { transpose } = require("../../utils/notes/transpose-functions");
 const { tamperMelodyNoDouble } = require("../exercises-functions");
+const { calculateNoteFromInterval } = require("../../utils/intervals/intervals-functions");
+const { keys } = require("../../utils/keys/keys-utils");
 
 const Interval = require("../../utils/intervals/interval");
+const Key = require("../../utils/keys/key");
+const Note = require("../../utils/notes/note");
 
 const TransposeExercises = class {
     #grade;
@@ -15,7 +19,7 @@ const TransposeExercises = class {
     constructor(grade) {
         this.#grade = grade;
     }
-    
+
     transposeMelodyByOctave() {
         const { melody } = writeRandomMelody(this.#grade, 4, 8);
 
@@ -111,6 +115,47 @@ const TransposeExercises = class {
         ${transposedMelody.map(note => note.getNote()).join(" ")}`;
 
         answers = [melodyIsCorrect ? "yes" : "no"];
+
+        return { question, answers }
+    }
+
+    transposeKeySignature() {
+        if (this.#grade < 5) {
+            throw new Error("This exercise is not supported before Grade Five");
+        }
+
+        let key1 = Key.getRandomKey(this.#grade);
+
+        while (key1.getMode() === "minor") {
+            key1 = Key.getRandomKey(this.#grade);
+        }
+        
+        const keySignature1 = key1.getKeySignature();
+
+        let random = Math.floor(Math.random() * 3);
+        let interval = new Interval(this.#transposingIntervals[random]);
+
+        let asc = Math.floor(Math.random() * 2) === 0 ? false : true;
+
+        let newTonic = calculateNoteFromInterval(new Note(`${key1.getTonic()}3`), interval, asc);
+
+        while (!Object.keys(keys).includes(newTonic.getNoteWithoutOctave())) {
+            random = Math.floor(Math.random() * 3);
+            interval = new Interval(this.#transposingIntervals[random]);
+    
+            asc = Math.floor(Math.random() * 2) === 0 ? false : true;
+            newTonic = calculateNoteFromInterval(new Note(`${key1.getTonic()}3`), interval, asc);
+        }
+
+        const key2 = new Key(`${newTonic.getNoteWithoutOctave()} ${key1.getMode()}`);
+        const keySignature2 = key2.getKeySignature();
+
+        let question, answers;
+
+        question = `Transpose the following key signature a ${interval.getInterval()} ${asc ? "higher" : "lower"}:
+        ${keySignature1.join(" ")}`
+
+        answers = [keySignature2.join(" ")];
 
         return { question, answers }
     }

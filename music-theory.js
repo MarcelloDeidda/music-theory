@@ -3,6 +3,7 @@
 //const KeyExercises = require("./exercises/scales/key-exercises");
 // const ScaleExercises = require("./exercises/scales/scale-exercises");
 const PitchExercises = require("./exercises/pitch/PitchExercises");
+const TransposeExercises = require("./exercises/pitch/TransposeExercises");
 
 const { execute } = require("./exercises/exercises-functions");
 
@@ -29,11 +30,11 @@ const intervals = [i1, i2, i3, i4];
 
 let x;
 
-for (let i = 4; i <= 5; i++) {
-    x = new PitchExercises(i);
+for (let i = 5; i <= 5; i++) {
+    x = new TransposeExercises(i);
 
     for (let i = 0; i < 300; i++) {
-        console.log(x.isEnharmonicEquivalent())
+        console.log(x.transposeKeySignature())
     }
 }
 
