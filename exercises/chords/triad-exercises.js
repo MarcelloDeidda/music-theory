@@ -1,17 +1,21 @@
-const KeyBuilder = require("../../utils/keys/key-builder");
+const { removeAccidentals, tamperChordNoDouble } = require("../exercises-functions");
+
 const Note = require("../../utils/notes/note");
-const ExerciseHandler = require("../exercise");
+const Key = require("../../utils/keys/key");
 
 const TriadExercises = class {
+    #grade;
+    #octaves;
+
     constructor(grade = 1) {
-        this.keys = KeyBuilder.availableKeys(grade);
-        this.grade = grade;
+        this.#grade = grade;
+        this.#octaves = [2, 3, 4];
     }
 
-    #generateTriad() {
-        let index = Math.floor(Math.random() * this.keys.length);
-        let key = this.keys[index];
-        let tonic = new Note(key.tonic + 4);
+    #generateTonicTriad() {
+        const key = Key.getRandomKey(this.#grade);
+
+        let tonic = new Note(key.getTonic() + this.#octaves[Math.floor(Math.random() * this.#octaves.length)]);
         let triad = key.getTriad(1, tonic);
 
         return {
@@ -21,14 +25,14 @@ const TriadExercises = class {
     }
 
     #generatePrimaryTriads() {
-        const index = Math.floor(Math.random() * this.keys.length);
-        const key = this.keys[index];
-        const tonic = new Note(key.tonic + 4);
+        const key = Key.getRandomKey(this.#grade);
+
+        const tonic = new Note(key.getTonic() + this.#octaves[Math.floor(Math.random() * this.#octaves.length)]);
         const triads = {};
 
         [1, 2, 4, 5].map(degree => triads[degree] = key.getTriad(degree, tonic));
 
-        if (this.grade < 5) { delete triads["2"] }
+        if (this.#grade < 5) { delete triads["2"] }
 
         return {
             triads,
@@ -37,10 +41,10 @@ const TriadExercises = class {
     }
 
     recogniseTonicTriad() {
-        const { triad, key } = this.#generateTriad();
+        const { triad, key } = this.#generateTonicTriad();
 
-        let question = `Enter the key of the following chord: ${triad[0].fullNote} ${triad[1].fullNote} ${triad[2].fullNote}:`
-        let answers = [key.name];
+        let question = `Enter the key of the following chord: ${triad[0].getNote()} ${triad[1].getNote()} ${triad[2].getNote()}:`
+        let answers = [key.getName()];
 
         return {
             question,
@@ -49,10 +53,10 @@ const TriadExercises = class {
     }
 
     addNoteToCompleteTonicTriad() {
-        const { triad, key } = this.#generateTriad();
+        const { triad, key } = this.#generateTonicTriad();
 
-        let answers = [triad.splice(Math.floor(Math.random() * 3), 1)[0].fullNote];
-        let question = `Add note to complete the tonic triad of ${key.name}: ${triad[0].fullNote} ${triad[1].fullNote}:`
+        let answers = [triad.splice(Math.floor(Math.random() * 3), 1)[0].getNote()];
+        let question = `Add note to complete the tonic triad of ${key.getName()}: ${triad[0].getNote()} ${triad[1].getNote()}:`
 
         return {
             question,
@@ -61,20 +65,21 @@ const TriadExercises = class {
     }
 
     addAccidentalsToTonicTriad() {
-        const { triad, key } = this.#generateTriad();
+        const { triad, key } = this.#generateTonicTriad();
 
-        let naturalTriad = ExerciseHandler.removeAccidentals(triad);
+        let naturalTriad = removeAccidentals(triad);
+
         let differentNotes = triad.filter(note => {
             for (let naturalNote of naturalTriad) {
-                if (naturalNote.fullNote === note.fullNote) {
+                if (naturalNote.getNote() === note.getNote()) {
                     return false;
                 }
             }
             return true;
         });
 
-        let question = `Add the accidentals to complete the tonic triad of ${key.name}: ${naturalTriad[0].fullNote} ${naturalTriad[1].fullNote} ${naturalTriad[2].fullNote}:`
-        let answers = [differentNotes.map(note => note.fullNote).join(" ")];
+        let question = `Add the accidentals to complete the tonic triad of ${key.getName()}: ${naturalTriad[0].getNote()} ${naturalTriad[1].getNote()} ${naturalTriad[2].getNote()}:`
+        let answers = [differentNotes.map(note => note.getNote()).join(" ")];
 
         if (answers[0] === "") { answers = ["none"] }
 
@@ -85,17 +90,17 @@ const TriadExercises = class {
     }
 
     isThisTonicTriadRight() {
-        let { triad, key } = this.#generateTriad();
+        let { triad, key } = this.#generateTonicTriad();
         let triadIsCorrect = true;
 
         let random = Math.ceil(Math.random() * 2);
 
         if (random === 1) {
-            triad = ExerciseHandler.tamperChordNoDouble(triad);
+            triad = tamperChordNoDouble(triad);
             triadIsCorrect = false;
         }
 
-        let question = `Is this the tonic triad of ${key.name}? ${triad[0].fullNote} ${triad[1].fullNote} ${triad[2].fullNote}:`
+        let question = `Is this the tonic triad of ${key.getName()}? ${triad[0].getNote()} ${triad[1].getNote()} ${triad[2].getNote()}:`
         let answers = [triadIsCorrect ? "yes" : "no"];
 
         return {
@@ -115,13 +120,13 @@ const TriadExercises = class {
         }
 
         let question = `Find the key of the following primary triads:${Object.entries(triads).map(([degree, triad]) => {
-            return `\n${degree} - ${triad[0].fullNote} ${triad[1].fullNote} ${triad[2].fullNote}`
+            return `\n${degree} - ${triad[0].getNote()} ${triad[1].getNote()} ${triad[2].getNote()}`
         })}`
 
-        let answers = [key.name];
+        let answers = [key.getName()];
 
         if (Object.entries(triads).length === 1 && Object.keys(triads)[0] === "5") {
-            const otherKey = `${key.tonic} ${key.mode === "major" ? "minor" : "major"}`
+            const otherKey = `${key.getTonic()} ${key.getMode() === "major" ? "minor" : "major"}`
             answers.push(otherKey);
         }
 
@@ -138,7 +143,7 @@ const TriadExercises = class {
         const degree = Object.keys(triads)[random];
         const triad = triads[degree];
 
-        let question = `Find the degree of the this primary triad in ${key.name}: ${triad[0].fullNote} ${triad[1].fullNote} ${triad[2].fullNote}`
+        let question = `Find the degree of the this primary triad in ${key.getName()}: ${triad[0].getNote()} ${triad[1].getNote()} ${triad[2].getNote()}`
 
         let answers = [degree];
 
@@ -155,9 +160,9 @@ const TriadExercises = class {
         const degree = Object.keys(triads)[random];
         const triad = triads[degree];
 
-        let question = `Find the ${degree} triad of ${key.name}: `
+        let question = `Find the ${degree} triad of ${key.getName()}: `
 
-        let answers = [`${triad[0].note} ${triad[1].note} ${triad[2].note}`];
+        let answers = [`${triad[0].getNoteWithoutOctave()} ${triad[1].getNoteWithoutOctave()} ${triad[2].getNoteWithoutOctave()}`];
 
         return {
             question,
@@ -175,9 +180,9 @@ const TriadExercises = class {
         random = Math.floor(Math.random() * 3);
         const missingNote = triad.splice(random, 1)[0];
 
-        let question = `Find the missing note of the ${degree} triad of ${key.name}: ${triad[0].fullNote} ${triad[1].fullNote}`
+        let question = `Find the missing note of the ${degree} triad of ${key.getName()}: ${triad[0].getNote()} ${triad[1].getNote()}`
 
-        let answers = [missingNote.fullNote];
+        let answers = [missingNote.getNote()];
 
         return {
             question,

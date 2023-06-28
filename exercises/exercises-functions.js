@@ -51,7 +51,7 @@ module.exports.tamperChordNoDouble = notes => {
         newNoteIndex = Math.floor(Math.random() * notes.length);
         asc = Math.floor(Math.random() * 2) === 1 ? true : false;
 
-        newNote = IntervalCalculator.calculateNoteFromInterval(newNotes[newNoteIndex], new Interval("1 augmented"), asc);
+        newNote = calculateNoteFromInterval(newNotes[newNoteIndex], new Interval("1 augmented"), asc);
     }
 
     newNotes[newNoteIndex] = newNote;
