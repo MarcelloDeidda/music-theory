@@ -121,7 +121,7 @@ The file "./interval-utils.js" contains several helper functions and data struct
     - Find enharmonic equivalent
     - Enharmonic equivalente true/false
     - **Transpose one octave higher/lower**
-    - Transpose a major 2nd, minor 3rd, perfect 5th
+    - **Transpose a major 2nd, minor 3rd, perfect 5th**
     - Find new key signature
     - Transposing instruments
 
