@@ -21,6 +21,10 @@ const TransposeExercises = class {
     }
 
     transposeMelodyByOctave() {
+        if (this.#grade < 3) {
+            throw new Error("This exercise is not available before Grade Three");
+        }
+
         const { melody } = writeRandomMelody(this.#grade, 4, 8);
 
         let interval = new Interval("perfect 8");
@@ -38,6 +42,10 @@ const TransposeExercises = class {
     }
 
     checkTransposedMelodyByOctave() {
+        if (this.#grade < 3) {
+            throw new Error("This exercise is not available before Grade Three");
+        }
+
         const { melody } = writeRandomMelody(this.#grade, 4, 8);
 
         let interval = new Interval("perfect 8");
@@ -68,6 +76,10 @@ const TransposeExercises = class {
     }
 
     transposeMelody() {
+        if (this.#grade < 5) {
+            throw new Error("This exercise is not available before Grade Five");
+        }
+
         const { melody } = writeRandomMelody(this.#grade, 4, 8);
 
         let random = Math.floor(Math.random() * 3);
@@ -88,6 +100,10 @@ const TransposeExercises = class {
     }
 
     checkTransposedMelody() {
+        if (this.#grade < 5) {
+            throw new Error("This exercise is not available before Grade Five");
+        }
+
         const { melody } = writeRandomMelody(this.#grade, 4, 8);
 
         let random = Math.floor(Math.random() * 3);
@@ -121,7 +137,7 @@ const TransposeExercises = class {
 
     transposeKeySignature() {
         if (this.#grade < 5) {
-            throw new Error("This exercise is not supported before Grade Five");
+            throw new Error("This exercise is not available before Grade Five");
         }
 
         let key1 = Key.getRandomKey(this.#grade);
