@@ -6,7 +6,11 @@ const PitchExercises = require("./exercises/pitch/PitchExercises");
 
 const { execute } = require("./exercises/exercises-functions");
 
+
 const Key = require("./utils/keys/key");
+const { calculateNoteFromInterval } = require("./utils/intervals/intervals-functions");
+const Note = require("./utils/notes/note");
+const Interval = require("./utils/intervals/interval");
 
 /*
 const a = new Note("C2");
@@ -25,11 +29,11 @@ const intervals = [i1, i2, i3, i4];
 
 let x;
 
-for (let i = 1; i <= 5; i++) {
+for (let i = 4; i <= 5; i++) {
     x = new PitchExercises(i);
 
     for (let i = 0; i < 300; i++) {
-        console.log(x.isNoteHigher())
+        console.log(x.isEnharmonicEquivalent())
     }
 }
 
