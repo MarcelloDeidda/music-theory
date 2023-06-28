@@ -75,6 +75,3 @@ module.exports.getRandomNoteFromScale = scale => {
 
     return scale[random];
 }
-
-let a = new Note("A4");
-let b = new Note("D#4");
