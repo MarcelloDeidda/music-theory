@@ -1,6 +1,7 @@
 const { calculateNoteFromInterval } = require("../intervals/intervals-functions");
 const { triadFromKey } = require("../chords/chords-functions");
-const { getKeySignature, scaleFromKey } = require("./keys-functions");
+const { getKeySignature } = require("./keys-functions");
+const { scaleFromKey } = require("./scales-functions");
 const { keys } = require("./keys-utils");
 
 const Note = require("../notes/note");

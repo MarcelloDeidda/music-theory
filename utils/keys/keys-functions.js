@@ -36,24 +36,3 @@ module.exports.getKeySignature = key => {
 
     return this.printAccidentals(keys[tonic.getNoteWithoutOctave()]);
 }
-
-module.exports.scaleFromKey = (tonic, keySignature) => {
-    const keyboard = printKeyboard();
-
-    let tonicIndex = keyboard.indexOf(`${tonic.getLetterName()}${tonic.getOctave()}`);
-    const scale = [];
-
-    for (let i = 0; i < 8; i++) {
-        scale.push(keyboard[tonicIndex + i]);
-    }
-
-    for (let i = 0; i < 8; i++) {
-        for (let acc of keySignature) {
-            if (scale[i].slice(0, scale[i].length - 1) === acc[0]) {
-                scale[i] = acc + scale[i].slice(scale[i].length - 1);
-            }
-        }
-    }
-
-    return scale.map(note => new Note(note));
-}
