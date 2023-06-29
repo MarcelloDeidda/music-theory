@@ -14,33 +14,64 @@ The directory contains a "./utils" and a "./exercises" folder, which cointain th
 
 ### Utils
 
-This folder is organised in four subfolders: "./chords", "./intervals", "./keys", "./notes", "./terms".
+This folder is organised in the following subfolders: "./chords", "./intervals", "./keys", "./melody", "./notes", "./terms".
+
+#### Notes
+
+The file "./notes-utils.js" contains several helper data structs:
+
+- *array* **notes** contains the letter names of the seven notes
+- *array* **accidentals** contains the five accidentals
+- *object* **accidentalsInSemitones** contains the relationship between accidentals and semitone alteration to a note
+- *array* **chromaticScale** contains the list of enharmonic equivalent values in an octave
+
+The file "./notes-functions.js" contains several helper functions:
+
+- **printKeyboard** returns an array with all white keys of a piano
+- **sortNotes** sorts and returns a list of notes in ascending order
+- **isNoteHigher** compares two notes
+- **getRandomNote** returns a random note
+- **getRandomNoteNoDouble** returns a random note avoiding double sharp or double flat accidentals
+- **getRandomNaturalNote** returns a random note avoiding accidentals
+- **getRandomNoteFromScale** returns a random note from a given scale (array containing Note objects)
+
+#### Intervals
+
+The file "./intervals-utils.js" contains several helper data structs:
+
+- *object* **qualities** contains the five interval qualities
+- *object* **intervalNumbers** contains the interval numbers from *unison* to *octave*
+- *object* **semitonesToIntervals** contains the relationship between semitone count, interval number and interval quality
+
+The file "./intervals-functions.js" contains the following functions:
+
+- *local* **calculateDistance(firstNote, secondNote)** calculates the number distance between two notes
+- *local* **calculateSemitones(firstNote, secondNote)** calculates the number of semitones between two notes
+- **calculateInterval(firstNote, secondNote)** calculates the interval between two notes
+- **calculateNoteFromInterval(note, interval, asc = true)** finds the note with a distance of **interval** higher or lower (depending on **asc**) than **note**
+
+The file "./interval.js" contains the class Interval, containing the following methods:
+
+- *constructor* initialises the class with **interval** and **semitones** parameters (the second is set to *null* by default)
+- **getInterval** returns the name of the interval (quality + distance)
+- **getDistance** returns the distance of the interval as an integer
+- **getSimpleDistance** returns the simple distance (ignoring compound) of the interval as an integer
+- **getNumber** returns the number of the interval as a string (e.g. "third")
+- **getQuality** returns the quality of the interval
+- **getSemitones** returns the number of semitones as an integer
+- **isCompound** returns a boolean
+- **isClssified** returns a boolean representing whether or not the interval's quality is one of the five provided by "./intervals-utils.js"
 
 #### Chords
 
-The file "./chord-builder.js" cointains the class ChordBuilder with the following methods:
+The file "./chord-functions.js" cointains the following functions:
 
 - **majorChord(root)** returns a major chord from a single note
 - **minorChord(root)** returns a minor chord from a single note
 - **diminishedChord(root)** returns a diminished chord from a single note
 - **augmentedChord(root)** returns a augmented chord from a single note
-- **dominantSeventhChord(root)** returns a dominant seventh chord from a single note
+- **dominantSeventh(root)** returns a dominant seventh chord from a single note
 - **triadFromKey(degree, tonic, keySignature)** returns a triad of a scale starting at **tonic**
-
-#### Intervals
-
-The file "./interval-calculator.js" contains the class IntervalCalculator with the following static methods:
-
-- *private* **calculateDistance(firstNote, secondNote)** calculates the number distance between two notes
-- *private* **calculateSemitones(firstNote, secondNote)** calculates the number of semitones between two notes
-- **calculateInterval(firstNote, secondNote)** calculates the interval between two notes
-- **calculateNoteFromInterval(note, interval, asc = true)** finds the note with a distance of **interval** higher or lower (depending on **asc**) than **note**
-
-The file "./interval-utils.js" contains several helper functions and data structs:
-
-- *object* **qualities** contains the five interval qualities
-- *object* **intervalNumbers** contains the interval numbers from *unison* to *octave*
-- *object* **semitonesToIntervals** contains the relationship between semitone count, interval number and interval quality
 
 ## Concepts
 
