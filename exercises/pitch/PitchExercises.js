@@ -1,6 +1,7 @@
 const { chromaticScale } = require("../../utils/notes/notes-utils");
-const { isNoteHigher, getRandomNoteFromScale, getRandomNote } = require("../../utils/notes/notes-functions");
+const { isNoteHigher, getRandomNoteFromScale, getRandomNote, getRandomNoteNoDouble } = require("../../utils/notes/notes-functions");
 const { calculateInterval, calculateNoteFromInterval } = require("../../utils/intervals/intervals-functions");
+const { removeAccidentals } = require("../exercises-functions");
 
 const Note = require("../../utils/notes/note");
 const Key = require("../../utils/keys/key");
@@ -12,6 +13,31 @@ const PitchExercises = class {
 
     constructor(grade) {
         this.#grade = grade;
+    }
+
+    #getSemitoneOrTone() {
+        let note1, note2;
+
+        if (this.#grade < 4) {
+            note1 = getRandomNoteNoDouble(this.#octaves[0], this.#octaves[this.#octaves.length - 1]);
+        } else {
+            note1 = getRandomNote(this.#octaves[0], this.#octaves[this.#octaves.length - 1]);
+        }
+
+        const intervals = ["augmented 1", "minor 2", "major 2"]
+        let random = Math.floor(Math.random() * 3);
+
+        note2 = calculateNoteFromInterval(note1, new Interval(intervals[random]), Math.floor(Math.random() * 2) === 1 ? true : false);
+
+        while (
+            this.#grade < 4 && (note2.getAccidentalInSemitones() < -1 || note2.getAccidentalInSemitones() > 1) ||
+            note2.getNoteWithoutOctave() === "undefined"
+        ) {
+            random = Math.floor(Math.random() * 3);
+            note2 = calculateNoteFromInterval(note1, new Interval(intervals[random]), Math.floor(Math.random() * 2) === 1 ? true : false);
+        }
+
+        return { note1, note2 }
     }
 
     isNoteHigher(options = { noAcc: false }) {
@@ -61,7 +87,7 @@ const PitchExercises = class {
         let question, answers;
 
         question = `Find the enharmonic equivalent of ${note1.getNote()}`
-        answers = enharmonicEquivalents.map(note => note + (note === "B#" || note === "Bx" ? note1.getOctave() - 1: note1.getOctave()));
+        answers = enharmonicEquivalents.map(note => note + (note === "B#" || note === "Bx" ? note1.getOctave() - 1 : note1.getOctave()));
 
         return { question, answers }
     }
@@ -91,6 +117,31 @@ const PitchExercises = class {
 
         question = `Are these two notes enharmonic equivalent? ${note1.getNote()} ${note2.getNote()}`
         answers = [isEnharmonic ? "yes" : "no"];
+
+        return { question, answers }
+    }
+
+    toneOrSemitone() {
+        const { note1, note2 } = this.#getSemitoneOrTone();
+
+        let question, answers;
+
+        question = `Is this interval a semitone, or a tone? ${note1.getNote()} ${note2.getNote()}`
+        answers = [calculateInterval(note1, note2).getSemitones() === 1 ? "semitone" : "tone"];
+
+        return { question, answers }
+    }
+
+    addAccidentalToToneOrSemitone() {
+        const { note1, note2 } = this.#getSemitoneOrTone();
+        const interval = calculateInterval(note1, note2);
+
+        const naturalNote2 = removeAccidentals([note2])[0];
+
+        let question, answers;
+
+        question = `Add an accidental to the second note to make a ${interval.getSemitones() === 1 ? "semitone" : "tone"}: ${note1.getNote()} ${naturalNote2.getNote()}`
+        answers = [note2.getNote() !== naturalNote2.getNote() ? note2.getNote() : "none"];
 
         return { question, answers }
     }

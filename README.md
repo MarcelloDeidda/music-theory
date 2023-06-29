@@ -86,13 +86,13 @@ The file "./interval-utils.js" contains several helper functions and data struct
 
 ### Pitch
 
-- Grade One:
+- **Grade One:**
     - *Name note in treble and bass clef (with/out acc)*
     - **Find the higher note of two (with/out acc)**
     - *Spell words with notes*
     - *Add clef to note and note name*
-    - Find semitones and tones
-    - Add accidental to make semitones or tones
+    - **Find semitones and tones**
+    - **Add accidental to make semitones or tones**
 - **Grade Two:**
     - *Name note with ledger line (up to two)*
     - **Find the higher note of two**

@@ -30,11 +30,11 @@ const intervals = [i1, i2, i3, i4];
 
 let x;
 
-for (let i = 5; i <= 5; i++) {
-    x = new TransposeExercises(i);
+for (let i = 1; i <= 1; i++) {
+    x = new PitchExercises(i);
 
     for (let i = 0; i < 300; i++) {
-        console.log(x.transposingInstrumentSoundingNote())
+        console.log(x.addAccidentalToToneOrSemitone())
     }
 }
 
