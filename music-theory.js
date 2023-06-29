@@ -34,7 +34,7 @@ for (let i = 5; i <= 5; i++) {
     x = new TransposeExercises(i);
 
     for (let i = 0; i < 300; i++) {
-        console.log(x.transposeKeySignature())
+        console.log(x.transposingInstrumentSoundingNote())
     }
 }
 

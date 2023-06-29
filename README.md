@@ -113,7 +113,7 @@ The file "./interval-utils.js" contains several helper functions and data struct
     - **Find enharmonic equivalent**
     - **Enharmonic equivalente true/false**
     - **Transpose one octave higher/lower**
-- Grade Five:
+- **Grade Five:**
     - *Name note in tenor clef*
     - *Add clef to note and note name*
     - *Rewrite note in different clef*
@@ -122,7 +122,7 @@ The file "./interval-utils.js" contains several helper functions and data struct
     - **Transpose one octave higher/lower**
     - **Transpose a major 2nd, minor 3rd, perfect 5th**
     - **Find new key signature**
-    - Transposing instruments
+    - **Transposing instruments**
 
 ### Keys & Scales
 
@@ -168,7 +168,7 @@ The file "./interval-utils.js" contains several helper functions and data struct
     - Chromatic scale - find incorrect notes
     - **Name major and minor keys for key signature**
     - **Recognise scales**
-- Grade Five:
+- **Grade Five:**
     - **Keys: Gb, F# major and Eb, D# minor**
     - **Find the correct key signature for a key**
     - *Choose correct clef for key signature*

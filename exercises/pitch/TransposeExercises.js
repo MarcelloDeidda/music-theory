@@ -2,14 +2,17 @@ const { writeRandomMelody } = require("../../utils/melody/melody-functions");
 const { transpose } = require("../../utils/notes/transpose-functions");
 const { tamperMelodyNoDouble } = require("../exercises-functions");
 const { calculateNoteFromInterval } = require("../../utils/intervals/intervals-functions");
+const { getRandomNote } = require("../../utils/notes/notes-functions");
 const { keys } = require("../../utils/keys/keys-utils");
 
 const Interval = require("../../utils/intervals/interval");
 const Key = require("../../utils/keys/key");
 const Note = require("../../utils/notes/note");
+const { transposingInstruments } = require("../../utils/notes/transpose-utils");
 
 const TransposeExercises = class {
     #grade;
+    #octaves = [2, 3, 4, 5];
     #transposingIntervals = [
         "major 2",
         "minor 3",
@@ -172,6 +175,36 @@ const TransposeExercises = class {
         ${keySignature1.join(" ")}`
 
         answers = [keySignature2.length > 0 ? keySignature2.join(" ") : "none"];
+
+        return { question, answers }
+    }
+
+    transposingInstrumentSoundingNote() {
+        if (this.#grade < 5) {
+            throw new Error("This exercise is not available before Grade Five");
+        }
+
+        let note = getRandomNote(this.#octaves[0], this.#octaves[this.#octaves.length - 1]);
+
+        let random = Math.floor(Math.random() * 5);
+        let transposingInstrument = Object.keys(transposingInstruments)[random];
+        let transposingInterval = new Interval(transposingInstruments[transposingInstrument]);
+        
+        let transposedNote;
+
+        let question, answers;
+
+        random = Math.floor(Math.random() * 2);
+
+        if (random === 0) {
+            transposedNote = calculateNoteFromInterval(note, transposingInterval, false);
+            question = `Find the sounding note when played by a ${transposingInstrument} (${transposingInterval.getInterval()} lower): ${note.getNote()}`
+            answers = [transposedNote.getNote()];
+        } else {
+            transposedNote = calculateNoteFromInterval(note, transposingInterval);
+            question = `Find the writing note when played by a ${transposingInstrument} (${transposingInterval.getInterval()} higher): ${note.getNote()}`
+            answers = [transposedNote.getNote()];
+        }
 
         return { question, answers }
     }
