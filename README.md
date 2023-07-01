@@ -115,6 +115,66 @@ The file "./chord-functions.js" cointains the following functions:
 
 ## Exercises
 
+### Rhythm
+
+- Grade One:
+    - Quiz
+    - Musical sum
+    - Mark beat number
+    - Time signature true/false
+    - Complete time signature
+    - Add note to complete bar
+    - Add missing bar lines
+    - Check grouping
+    - Ties: write length
+    - Musical sum with ties
+    - Musical sum with dots
+    - Add dot to one note to match time signature
+- Grade Two:
+    - Minim beat and quaver beat
+    - Triplets
+    - Dotted rests
+    - Grouping rests
+    - Quiz
+    - Complete time signature
+    - Add note to complete bar and write beats
+    - Add bar lines
+    - Rewrite rhythm in different metre
+    - Check grouping
+- Grade Three:
+    - Demisemiquaver
+    - Upbeat
+    - Duple, Triple, Quadruple time
+    - Simple and Compound time
+    - Quiz
+    - Complete time signature
+    - Add note to complete bar and write beats
+    - Add bar lines
+    - Rewrite rhythm in different metre
+    - Check grouping
+- Grade Four:
+    - Breve
+    - Double dots
+    - Duplets in compound
+    - 4/8
+    - Compound time signatures in 4 and 16
+    - Quiz
+    - Complete time signature
+    - Add note to complete bar and write beats
+    - Add bar lines
+    - Rewrite rhythm in different metre
+    - Check grouping
+- Grade Five:
+    - Irregular time signatures
+    - Quintuplets, sextuplets
+    - Quiz
+    - Complete time signature
+    - Add note to complete bar and write beats
+    - Add bar lines
+    - Rewrite rhythm in different metre
+    - Check grouping
+
+
 ### **Pitch**
 
 - **Grade One:**
@@ -189,14 +249,14 @@ The file "./chord-functions.js" cointains the following functions:
     - **Find relative minors**
     - **Recognise scales**
     - Select accidentals that aren't needed
-- Grade Four:
+- **Grade Four:**
     - **Keys: Db, B major and G#, Bb minor**
     - **Technical names for the degrees**
     - *Choose correct clef for key signature*
     - **Add accidentals to scales**
     - **Add accidentals to melodies**
     - **Recognise key of melody**
-    - Chromatic scale - find incorrect notes
+    - **Chromatic scale - find incorrect notes**
     - **Name major and minor keys for key signature**
     - **Recognise scales**
 - **Grade Five:**
@@ -249,7 +309,7 @@ The file "./chord-functions.js" cointains the following functions:
     - **Recognise key of tonic triad**
     - **Add note to complete triad**
     - **Add accidental to complete triad**
-- **Grade Four:**
+- Grade Four:
     - **Keys: Db, B major and G#, Bb minor**
     - **Primary triads**
     - **Name the key of triads (3, 2, 1)**
