@@ -1,12 +1,17 @@
 const { accidentalsInSemitones } = require("./notes-utils");
+const { values } = require("../rhythm/rhythm-utils");
 
 const Note = class {
     #note;
+    #value;
+    #dotted;
 
     // This object is initialised with a string containing Letter name,
     // Accidental and Octave number.
-    constructor(note) {
+    constructor(note, value = "semibreve", dotted = false) {
         this.#note = note;
+        this.#value = value;
+        this.#dotted = dotted;
     }
 
     getNote() {
@@ -34,6 +39,20 @@ const Note = class {
     getAccidentalInSemitones() {
         let accidental = this.getAccidental();
         return accidental !== null ? accidentalsInSemitones[accidental] : 0;
+    }
+
+    getValue() {
+        return `${this.#dotted ? "dotted " : ""} ${this.#value}`;
+    }
+
+    getBeats() {
+        let value = values[this.#value];
+        
+        if (this.#dotted) {
+            value += value / 2;
+        }
+
+        return value;
     }
 }
 
