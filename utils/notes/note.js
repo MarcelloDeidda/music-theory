@@ -3,6 +3,8 @@ const { accidentalsInSemitones } = require("./notes-utils");
 const Note = class {
     #note;
 
+    // This object is initialised with a string containing Letter name,
+    // Accidental and Octave number.
     constructor(note) {
         this.#note = note;
     }
@@ -27,6 +29,8 @@ const Note = class {
         return this.#note.length === 3 ? this.#note[1] : null;
     }
 
+    // This methods return an integer representing the alteration in semitones
+    // E.g. # => 1, b => -1
     getAccidentalInSemitones() {
         let accidental = this.getAccidental();
         return accidental !== null ? accidentalsInSemitones[accidental] : 0;

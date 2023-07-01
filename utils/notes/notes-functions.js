@@ -2,6 +2,7 @@ const { notes, accidentals } = require("./notes-utils");
 
 const Note = require("./note");
 
+// This function returns the white keys of a keyboard
 module.exports.printKeyboard = () => {
     let keyboard = []
 
@@ -17,6 +18,7 @@ module.exports.printKeyboard = () => {
     return keyboard;
 }
 
+// This function sorts a list of notes
 module.exports.sortNotes = (...noteList) => {
     const newNoteList = noteList.slice();
     newNoteList.sort((a, b) => {
@@ -47,12 +49,14 @@ module.exports.sortNotes = (...noteList) => {
     return newNoteList;
 }
 
+// This function checks that the second note is higher than the first
 module.exports.isNoteHigher = (note1, note2) => {
     const sortedNotes = this.sortNotes(note1, note2);
 
     return note1.getNote() === sortedNotes[0].getNote();
 }
 
+// This function returns a random note
 module.exports.getRandomNote = (lowOctave, highOctave) => {
     let octave = Math.floor(Math.random() * (highOctave - lowOctave + 1)) + lowOctave;
     let note = notes[Math.floor(Math.random() * 7)];
@@ -61,6 +65,7 @@ module.exports.getRandomNote = (lowOctave, highOctave) => {
     return new Note(`${note}${accidental}${octave}`);
 }
 
+// This function returns a random note avoiding double accidentals
 module.exports.getRandomNoteNoDouble = (lowOctave, highOctave) => {
     let octave = Math.floor(Math.random() * (highOctave - lowOctave + 1)) + lowOctave;
     let note = notes[Math.floor(Math.random() * 7)];
@@ -69,6 +74,7 @@ module.exports.getRandomNoteNoDouble = (lowOctave, highOctave) => {
     return new Note(`${note}${accidental}${octave}`);
 }
 
+// This function returns a random note avoiding accidentals
 module.exports.getRandomNaturalNote = (lowOctave, highOctave) => {
     let octave = Math.floor(Math.random() * (highOctave - lowOctave + 1)) + lowOctave;
     let note = notes[Math.floor(Math.random() * 7)];
@@ -76,6 +82,7 @@ module.exports.getRandomNaturalNote = (lowOctave, highOctave) => {
     return new Note(`${note}${octave}`);
 }
 
+// This function returns a random note from a scale (list of Note objects)
 module.exports.getRandomNoteFromScale = scale => {
     let random = Math.floor(Math.random() * 8);
 

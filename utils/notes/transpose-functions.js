@@ -1,5 +1,6 @@
 const { calculateNoteFromInterval } = require("../intervals/intervals-functions");
 
+// This function transposes a list of notes
 module.exports.transpose = (notes, interval, asc = true) => {
     const transposedNotes = [];
 
