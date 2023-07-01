@@ -1,6 +1,7 @@
-const { removeAccidentals } = require("../exercises-functions");
-const { sortNotes } = require("../../utils/notes/notes-functions");
+const { removeAccidentals, tamperChromaticScale } = require("../exercises-functions");
+const { sortNotes, getRandomNoteNoDouble, printKeyboard } = require("../../utils/notes/notes-functions");
 const { scaleDegrees } = require("../../utils/keys/keys-utils");
+const { createChromaticScale } = require("../../utils/keys/scales-functions");
 
 const Note = require("../../utils/notes/note");
 const Key = require("../../utils/keys/key");
@@ -204,6 +205,55 @@ const ScaleExercises = class {
             question,
             answers
         }
+    }
+
+    findWrongNoteInChromaticScale() {
+        if (this.#grade < 4) {
+            throw new Error("This exercise is not supported before Grade Four");
+        }
+
+        const startingNote = getRandomNoteNoDouble(this.#octaves[0], this.#octaves[this.#octaves.length - 1]);
+
+        const chromaticScale = createChromaticScale(startingNote, Math.floor(Math.random() * 2) === 0 ? false : true);
+
+        const { scale: wrongChromaticScale, index } = tamperChromaticScale(chromaticScale);
+
+        let question, answers;
+
+        question = `Find the wrong note in the following chromatic scale:
+        ${wrongChromaticScale.map(note => note.getNote()).join(" ")}`
+
+        answers = [wrongChromaticScale[index].getNote()];
+
+        return { question, answers }
+    }
+
+    isChromaticScaleCorrect() {
+        if (this.#grade < 4) {
+            throw new Error("This exercise is not supported before Grade Four");
+        }
+
+        const startingNote = getRandomNoteNoDouble(this.#octaves[0], this.#octaves[this.#octaves.length - 1]);
+
+        let chromaticScale = createChromaticScale(startingNote, Math.floor(Math.random() * 2) === 0 ? false : true);
+        let isScaleCorrect = true;
+
+        let random = Math.floor(Math.random() * 2);
+
+        if (random) {
+            const { scale: wrongChromaticScale } = tamperChromaticScale(chromaticScale);
+            chromaticScale = wrongChromaticScale;
+            isScaleCorrect = false;
+        }
+
+        let question, answers;
+
+        question = `Is this chromatic scale correct?:
+        ${chromaticScale.map(note => note.getNote()).join(" ")}`
+
+        answers = [isScaleCorrect ? "yes" : "no"];
+
+        return { question, answers }
     }
 }
 

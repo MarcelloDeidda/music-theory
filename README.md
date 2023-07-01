@@ -60,7 +60,7 @@ The file "./interval.js" contains the class Interval, containing the following m
 - **getQuality** returns the quality of the interval
 - **getSemitones** returns the number of semitones as an integer
 - **isCompound** returns a boolean
-- **isClssified** returns a boolean representing whether or not the interval's quality is one of the five provided by "./intervals-utils.js"
+- **isClassified** returns a boolean representing whether or not the interval's quality is one of the five provided by "./intervals-utils.js"
 
 #### Chords
 
@@ -115,7 +115,7 @@ The file "./chord-functions.js" cointains the following functions:
 
 ## Exercises
 
-### Pitch
+### **Pitch**
 
 - **Grade One:**
     - *Name note in treble and bass clef (with/out acc)*

@@ -1,7 +1,7 @@
 // const TriadExercises = require("./exercises/chords/triad-exercises");
 // const IntervalExercises = require("./exercises/intervals/interval-exercises");
 //const KeyExercises = require("./exercises/scales/key-exercises");
-// const ScaleExercises = require("./exercises/scales/scale-exercises");
+const ScaleExercises = require("./exercises/scales/scale-exercises");
 const PitchExercises = require("./exercises/pitch/PitchExercises");
 const TransposeExercises = require("./exercises/pitch/TransposeExercises");
 
@@ -12,6 +12,7 @@ const Key = require("./utils/keys/key");
 const { calculateNoteFromInterval } = require("./utils/intervals/intervals-functions");
 const Note = require("./utils/notes/note");
 const Interval = require("./utils/intervals/interval");
+const { createChromaticScale } = require("./utils/keys/scales-functions");
 
 /*
 const a = new Note("C2");
@@ -29,17 +30,14 @@ const intervals = [i1, i2, i3, i4];
 */
 
 let x;
+//x = new ScaleExercises(5);
 
-for (let i = 1; i <= 1; i++) {
-    x = new PitchExercises(i);
+for (let i = 4; i <= 5; i++) {
+    x = new ScaleExercises(i);
 
     for (let i = 0; i < 300; i++) {
-        console.log(x.addAccidentalToToneOrSemitone())
+        console.log(x.isChromaticScaleCorrect())
     }
 }
 
-
-
-
-//execute(x.findKeyOfMelody())
-
+//execute(x.findWrongNoteInChromaticScale())

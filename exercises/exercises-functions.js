@@ -75,3 +75,26 @@ module.exports.tamperMelodyNoDouble = (notes) => {
     newNotes[newNoteIndex] = newNote;
     return newNotes;
 }
+
+module.exports.tamperChromaticScale = (scale) => {
+    const intervals = ["augmented 1", "minor 2"];
+    let randomNote = Math.floor(Math.random() * scale.length);
+    let randomInterval = Math.floor(Math.random() * intervals.length);
+    let asc = Math.floor(Math.random() * 2) === 0 ? false : true;
+
+    let newNote = calculateNoteFromInterval(scale[randomNote], new Interval(intervals[randomInterval]), asc);
+
+    while (
+        newNote.getNoteWithoutOctave() === "undefined" ||
+        newNote.getAccidentalInSemitones() < -1 ||
+        newNote.getAccidentalInSemitones() > 1
+        ) {
+        randomInterval = Math.floor(Math.random() * intervals.length);
+        asc = Math.floor(Math.random() * 2) === 0 ? false : true;
+        newNote = calculateNoteFromInterval(scale[randomNote], new Interval(intervals[randomInterval]), asc);
+    }
+
+    scale[randomNote] = newNote;
+
+    return { scale, index: randomNote };
+}
