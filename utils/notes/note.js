@@ -49,7 +49,7 @@ const Note = class {
         let value = values[this.#value];
         
         if (this.#dotted) {
-            value += value / 2;
+            value *= 1.5;
         }
 
         return value;
