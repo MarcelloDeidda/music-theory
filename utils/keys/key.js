@@ -10,6 +10,8 @@ const Interval = require("../intervals/interval");
 const Key = class {
     #name;
 
+    // This object is initialised with a string containing key name
+    // (e.g.: "Ab major")
     constructor(name) {
         this.#name = name;
     }
@@ -103,6 +105,7 @@ const Key = class {
         return triad;
     }
 
+    // Return available keys from grade (as integer)
     static availableKeys(grade) {
         const keyList = [
             new Key("C major"),
@@ -156,6 +159,7 @@ const Key = class {
         return keyList;
     }
 
+    // Returns random key from grade (as integer)
     static getRandomKey(grade) {
         const keyList = this.availableKeys(grade);
 
@@ -163,6 +167,7 @@ const Key = class {
         return keyList[random];
     }
 
+    // Returns all major and minor keys
     static getAllKeys() {
         const keyList = [];
         for (let key in keys) {

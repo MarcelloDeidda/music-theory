@@ -4,6 +4,7 @@ const { printKeyboard} = require("../../utils/notes/notes-functions")
 
 const Note = require("../notes/note");
 
+// Create scale from Note object and keySignature (as Array)
 module.exports.scaleFromKey = (tonic, keySignature) => {
     const keyboard = printKeyboard();
 
@@ -25,6 +26,7 @@ module.exports.scaleFromKey = (tonic, keySignature) => {
     return scale.map(note => new Note(note));
 }
 
+// Create chromatic scale from Note object
 module.exports.createChromaticScale = (startingNote, asc = true) => {
     const intervals = ["augmented 1", "minor 2"];
     let chromaticScale = [];

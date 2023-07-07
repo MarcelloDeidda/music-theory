@@ -4,6 +4,8 @@ const Interval = class {
     #interval;
     #semitones;
 
+    // This object is initialised with a string containing quality and number
+    // (as integer number) of the required interval
     constructor(interval, semitones = null) {
         this.#interval = interval;
         this.#semitones = semitones;

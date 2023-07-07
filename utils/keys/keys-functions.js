@@ -6,6 +6,7 @@ const { keys, accidentalsIndexes } = require("./keys-utils");
 const Interval = require("../intervals/interval");
 const Note = require("../notes/note");
 
+// Return accidentals from keyConfig as object (e.g.: { type: "#", number: 2})
 module.exports.printAccidentals = keyConfig => {
     const accidentals = [];
 
@@ -22,6 +23,7 @@ module.exports.printAccidentals = keyConfig => {
     return accidentals;
 }
 
+// Returns key signature as Array from key as string (e.g.: "D major")
 module.exports.getKeySignature = key => {
     const keyInfo = key.split(" ");
 

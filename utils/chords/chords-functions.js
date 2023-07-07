@@ -4,7 +4,7 @@ const { calculateNoteFromInterval } = require("../intervals/intervals-functions"
 const Interval = require("../intervals/interval");
 const Note = require("../notes/note");
 
-
+// Create major chord from Note object
 module.exports.majorChord = root => {
     let third = calculateNoteFromInterval(root, new Interval("major 3"));
     let fifth = calculateNoteFromInterval(root, new Interval("perfect 5"));
@@ -12,6 +12,7 @@ module.exports.majorChord = root => {
     return [root, third, fifth];
 }
 
+// Create minor chord from Note object
 module.exports.minorChord = root => {
     // The parameter "root" MUST be a Note object
     let third = calculateNoteFromInterval(root, new Interval("minor 3"));
@@ -20,6 +21,7 @@ module.exports.minorChord = root => {
     return [root, third, fifth];
 }
 
+// Create diminished chord from Note object
 module.exports.diminishedChord = root => {
     // The parameter "root" MUST be a Note object
     let third = calculateNoteFromInterval(root, new Interval("minor 3"));
@@ -28,6 +30,7 @@ module.exports.diminishedChord = root => {
     return [root, third, fifth];
 }
 
+// Create augmented chord from Note object
 module.exports.augmentedChord = root => {
     // The parameter "root" MUST be a Note object
     let third = calculateNoteFromInterval(root, new Interval("major 3"));
@@ -36,6 +39,7 @@ module.exports.augmentedChord = root => {
     return [root, third, fifth];
 }
 
+// Create dominant seventh chord from Note object
 module.exports.dominantSeventh = root => {
     // The parameter "root" MUST be a Note object
     let third = calculateNoteFromInterval(root, new Interval("major 3"));
@@ -45,6 +49,8 @@ module.exports.dominantSeventh = root => {
     return [root, third, fifth, seventh];
 }
 
+// Create triad from degree (as integer), tonic (as Note object) and keySignature
+// (as Array);
 module.exports.triadFromKey = (degree, tonic, keySignature) => {
     const keyboard = printKeyboard();
 

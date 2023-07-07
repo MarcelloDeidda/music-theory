@@ -5,6 +5,7 @@ const { intervalNumbers, semitonesToIntervals } = require("./intervals-utils");
 const Note = require("../notes/note.js");
 const Interval = require("./interval");
 
+// Calculate the number of the interval
 const calculateDistance = (firstNote, secondNote) => {
     const keyboard = printKeyboard();
 
@@ -13,6 +14,7 @@ const calculateDistance = (firstNote, secondNote) => {
     return Math.abs(indexDifference) + 1;
 }
 
+// Calculate the number of semitones
 const calculateSemitones = (firstNote, secondNote) => {
     let firstNoteIndex = chromaticScale.findIndex(notes => notes.includes(firstNote.getNoteWithoutOctave()));
     let secondNoteIndex = chromaticScale.findIndex(notes => notes.includes(secondNote.getNoteWithoutOctave()));
@@ -26,6 +28,7 @@ const calculateSemitones = (firstNote, secondNote) => {
     }
 }
 
+// Calculate interval from two note Objects
 module.exports.calculateInterval = (firstNote, secondNote) => {
     // Calculate simple and compound interval
     let distance = calculateDistance(firstNote, secondNote);
@@ -46,6 +49,7 @@ module.exports.calculateInterval = (firstNote, secondNote) => {
     return interval;
 }
 
+// Calculate Note from Note object and Interval object (optional ascending argument)
 module.exports.calculateNoteFromInterval = (note, interval, asc = true) => {
     const keyboard = printKeyboard();
     let chromaticIndex = chromaticScale.findIndex(notes => notes.includes(note.getNoteWithoutOctave()));
