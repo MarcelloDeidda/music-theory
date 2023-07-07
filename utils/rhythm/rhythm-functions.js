@@ -1,4 +1,4 @@
-const { values } = require("./rhythm-utils");
+const { values, timeSignaturesTopValues, timeSignaturesBottomValues } = require("./rhythm-utils");
 const { subdivideCompoundTernaryNote, subdivideCompoundNote, subdivideNote } = require("./rhythm-subdivision");
 
 module.exports.findMetre = timeSignature => {
@@ -85,7 +85,26 @@ module.exports.findBeatValue = timeSignature => {
 }
 
 module.exports.createBar = (timeSignature, minValue, maxValue, grade) => {
-    const wholeBarValue = this.findWholeBarValue(timeSignature);
+    if (!Object.keys(values).includes(minValue)) {
+        throw new Error("Argument minValue is invalid!")
+    }
+
+    if (!Object.keys(values).includes(maxValue)) {
+        throw new Error("Argument maxValue is invalid!");
+    }
+
+    if (
+        !timeSignaturesTopValues.includes(timeSignature[0]) ||
+        !timeSignaturesBottomValues.includes(timeSignature[1])
+    ) {
+        throw new Error("Time signature is invalid!");
+    }
+
+    if (this.isCompound(timeSignature) && timeSignature[1] === 2) {
+        throw new Error("Compound time signatures with minim beats are not available!");
+    }
+
+        const wholeBarValue = this.findWholeBarValue(timeSignature);
     const isCompound = this.isCompound(timeSignature);
 
     if (isCompound) {
