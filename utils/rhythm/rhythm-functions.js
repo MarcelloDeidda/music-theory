@@ -1,6 +1,5 @@
 const { values } = require("./rhythm-utils");
-
-const RhythmicGroup = require("./rhythm-group");
+const { subdivideCompoundTernaryNote, subdivideCompoundNote, subdivideNote } = require("./rhythm-subdivision");
 
 module.exports.findMetre = timeSignature => {
     const top = timeSignature[0];
@@ -85,198 +84,19 @@ module.exports.findBeatValue = timeSignature => {
     return undefined;
 }
 
-module.exports.subdivideNote = (note, minValue = "breve", maxValue = "demisemiquaver", grade = 5) => {
-    // Demisemiquaver are not available before Grade Three
-    if (grade < 3 && maxValue === "demisemiquaver") {
-        maxValue = semiquaver;
-    }
-
-    // If maxValue is reached, the function returns it
-    if (note === maxValue) {
-        return new RhythmicGroup([note], values[note]);
-    }
-
-    const valueList = Object.keys(values);
-    let currentValueIndex = valueList.indexOf(note);
-    let minValueIndex = valueList.indexOf(minValue);
-    let maxValueIndex = valueList.indexOf(maxValue);
-
-    let random;
-
-    // Handle Dotted Notes
-    if (note.split(" ")[0] === "dotted") {
-        note = note.split(" ")[1];
-        currentValueIndex = valueList.indexOf(note);
-
-        if (note === maxValue) {
-            return new RhythmicGroup(`dotted ${[note]}`, values[note] * 1.5);
-        }
-
-        random = Math.floor(Math.random() * 3);
-
-        if (random === 0) {
-            return new RhythmicGroup([
-                this.subdivideNote(note, minValue, maxValue, grade),
-                this.subdivideNote(valueList[currentValueIndex + 1], minValue, maxValue, grade)
-            ], values[note] * 1.5);
-        } else if (random === 1 && currentValueIndex - minValueIndex >= 0) {
-            return new RhythmicGroup([`dotted ${note}`], values[note] * 1.5);
-        } else {
-            return new RhythmicGroup([
-                this.subdivideNote(valueList[currentValueIndex + 1], minValue, maxValue, grade),
-                this.subdivideNote(note, minValue, maxValue, grade)
-            ], values[note] * 1.5);
-        }
-    }
-
-    random = Math.floor(Math.random() * 24);
-
-    // Handle normal subdivision
-    if (random === 0 && maxValueIndex - currentValueIndex > 1 && currentValueIndex - minValueIndex >= -1) {
-        return new RhythmicGroup([
-            `dotted ${valueList[currentValueIndex + 1]}`,
-            this.subdivideNote(valueList[currentValueIndex + 2], minValue, maxValue, grade)
-        ], values[note]);
-    } else if (random === 1 && maxValueIndex - currentValueIndex > 1 && currentValueIndex - minValueIndex >= -1) {
-        return new RhythmicGroup([
-            this.subdivideNote(valueList[currentValueIndex + 2], minValue, maxValue, grade),
-            `dotted ${valueList[currentValueIndex + 1]}`
-        ], values[note]);
-    } else if (random === 2 && maxValueIndex - currentValueIndex > 1 && currentValueIndex - minValueIndex >= -1) {
-        return new RhythmicGroup([
-            this.subdivideNote(valueList[currentValueIndex + 2], minValue, maxValue, grade),
-            valueList[currentValueIndex + 1],
-            this.subdivideNote(valueList[currentValueIndex + 2], minValue, maxValue, grade)
-        ], values[note]);
-    } else if (random === 3 && grade > 1 && currentValueIndex - minValueIndex >= -1) {
-        return new RhythmicGroup([
-            valueList[currentValueIndex + 1],
-            valueList[currentValueIndex + 1],
-            valueList[currentValueIndex + 1]
-        ], values[note], "triplet");
-    } else if (random === 4 && maxValueIndex - currentValueIndex > 1 && grade > 4 && currentValueIndex - minValueIndex >= -2) {
-        return new RhythmicGroup([
-            valueList[currentValueIndex + 2],
-            valueList[currentValueIndex + 2],
-            valueList[currentValueIndex + 2],
-            valueList[currentValueIndex + 2],
-            valueList[currentValueIndex + 2]
-        ], values[note], "quintuplet");
-    } else if (random === 5 && maxValueIndex - currentValueIndex > 1 && grade > 4 && currentValueIndex - minValueIndex >= -2) {
-        return new RhythmicGroup([
-            valueList[currentValueIndex + 2],
-            valueList[currentValueIndex + 2],
-            valueList[currentValueIndex + 2],
-            valueList[currentValueIndex + 2],
-            valueList[currentValueIndex + 2],
-            valueList[currentValueIndex + 2]
-        ], values[note], "sextuplet");
-    } else if (random === 6 && maxValueIndex - currentValueIndex > 2 && currentValueIndex - minValueIndex >= -1 && grade > 3) {
-        return new RhythmicGroup([
-            `double dotted ${valueList[currentValueIndex + 1]}`,
-            this.subdivideNote(valueList[currentValueIndex + 3], minValue, maxValue, grade)
-        ], values[note]);
-    } else if (random === 7 && maxValueIndex - currentValueIndex > 2 && currentValueIndex - minValueIndex >= -1 && grade > 3) {
-        return new RhythmicGroup([
-            this.subdivideNote(valueList[currentValueIndex + 3], minValue, maxValue, grade),
-            `double dotted ${valueList[currentValueIndex + 1]}`
-        ], values[note]);
-    } else if (random > 7 && random < 15 && currentValueIndex - minValueIndex >= 0) {
-        return new RhythmicGroup([note], values[note]);
-    } else {
-        return new RhythmicGroup([
-            this.subdivideNote(valueList[currentValueIndex + 1], minValue, maxValue, grade),
-            this.subdivideNote(valueList[currentValueIndex + 1], minValue, maxValue, grade)
-        ], values[note]);
-    }
-}
-
-module.exports.subdivideCompoundNote = (note, metre, minValue = "breve", maxValue = "demisemiquaver", grade = 5) => {
-    // Demisemiquaver are not available before Grade Three
-    if (grade < 3 && maxValue === "demisemiquaver") {
-        maxValue = semiquaver;
-    }
-
-    const valueList = Object.keys(values);
-
-    note = note.split(" ")[1];
-
-    // If maxValue is reached, the function returns it 
-    if (note === maxValue) {
-        return new RhythmicGroup(`dotted ${[note]}`, values[note] * 1.5);
-    }
-
-    let currentValueIndex = valueList.indexOf(note);
-    let minValueIndex = valueList.indexOf(minValue);
-    let maxValueIndex = valueList.indexOf(maxValue);
-
-    let random;
-
-    switch (metre) {
-        case "duple":
-            random = Math.floor(Math.random() * 3);
-
-            if (random === 0 && currentValueIndex - minValueIndex >= 0) {
-                return new RhythmicGroup([`dotted ${note}`], values[note] * 1.5);
-            } else {
-                return new RhythmicGroup([
-                    this.subdivideNote(`dotted ${valueList[currentValueIndex + 1]}`, minValue, maxValue, grade),
-                    this.subdivideNote(`dotted ${valueList[currentValueIndex + 1]}`, minValue, maxValue, grade)
-                ], values[note] * 1.5);
-            }
-
-        case "quadruple":
-            random = Math.floor(Math.random() * 3);
-
-            if (random === 0 && currentValueIndex - minValueIndex >= 0) {
-                return new RhythmicGroup([`dotted ${note}`], values[note] * 1.5);
-            } else if (random === 1 && maxValueIndex - currentValueIndex > 1) {
-                return new RhythmicGroup([
-                    this.subdivideNote(`dotted ${valueList[currentValueIndex + 2]}`, minValue, maxValue, grade),
-                    `dotted ${valueList[currentValueIndex + 1]}`,
-                    this.subdivideNote(`dotted ${valueList[currentValueIndex + 2]}`, minValue, maxValue, grade)
-                ], values[note] * 1.5);
-            } else {
-                return new RhythmicGroup([
-                    this.subdivideCompoundNote(`dotted ${valueList[currentValueIndex + 1]}`, "duple", minValue, maxValue, grade),
-                    this.subdivideCompoundNote(`dotted ${valueList[currentValueIndex + 1]}`, "duple", minValue, maxValue, grade)
-                ], values[note] * 1.5);
-            }
-    }
-}
-
 module.exports.createBar = (timeSignature, minValue, maxValue, grade) => {
     const wholeBarValue = this.findWholeBarValue(timeSignature);
     const isCompound = this.isCompound(timeSignature);
 
     if (isCompound) {
         const metre = this.findMetre(timeSignature);
-        let note = this.findBeatValue(timeSignature);
 
         if (metre === "triple") {
-            const valueList = Object.keys(values);
-            note = note.split(" ")[1];
+            let beat = this.findBeatValue(timeSignature);
 
-            let currentValueIndex = valueList.indexOf(note);
-            // IMPLEMENT MIN AND MAX
-            let minValueIndex = valueList.indexOf(minValue);
-            let maxValueIndex = valueList.indexOf(maxValue);
-
-            let random = Math.floor(Math.random() * 2);
-        
-                if (random === 0) {
-                    return new RhythmicGroup([
-                        this.subdivideNote(`dotted ${note}`, minValue, maxValue, grade),
-                        this.subdivideCompoundNote(`dotted ${valueList[currentValueIndex - 1]}`, "duple", minValue, maxValue, grade)
-                    ], values[note] * 1.5);
-                } else {
-                    return new RhythmicGroup([
-                        this.subdivideCompoundNote(`dotted ${valueList[currentValueIndex - 1]}`, "duple", minValue, maxValue, grade),
-                        this.subdivideNote(`dotted ${note}`, minValue, maxValue, grade)
-                    ], values[note] * 1.5);
-                }
-            }
-        return this.subdivideCompoundNote(wholeBarValue, metre, minValue, maxValue, grade);
+            return subdivideCompoundTernaryNote(beat, minValue, maxValue, grade);
+        }
+        return subdivideCompoundNote(wholeBarValue, metre, minValue, maxValue, grade);
     }
-    return this.subdivideNote(wholeBarValue, minValue, maxValue, grade);
+    return subdivideNote(wholeBarValue, minValue, maxValue, grade);
 }
