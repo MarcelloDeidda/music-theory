@@ -14,55 +14,62 @@ The directory contains a "./utils" and a "./exercises" folder, which cointain th
 
 ### Utils
 
-This folder is organised in the following subfolders: "./chords", "./intervals", "./keys", "./melody", "./notes", "./terms".
+This folder is organised in the following subfolders:
+- "./chords"
+- "./intervals"
+- "./keys"
+- "./melody"
+- "./notes"
+- "./rhythm"
+- "./terms"
 
 #### Notes
 
-The file *"./notes-utils.js"* contains data structs that define notes and accidentals.
+- *"./notes-utils.js"* contains data structs that define notes and accidentals.
 
-The file *"./notes-functions.js"* contains functions to sort notes and get random notes.
+- *"./notes-functions.js"* contains functions to sort notes and get random notes.
 
-The file *"./note.js"* contains the class Note, which is initialised with a string containing letter name, accidental and octave number (e.g.: "C#4", "B3", "Fb5").
+- *"./note.js"* contains the class Note, which is initialised with a string containing letter name, accidental and octave number (e.g.: "C#4", "B3", "Fb5").
 
 #### Intervals
 
-The file *"./intervals-utils.js"* contains data structs that define interval numbers, qualities and relationship between these and the number of semitones.
+- *"./intervals-utils.js"* contains data structs that define interval numbers, qualities and relationship between these and the number of semitones.
 
-The file *"./intervals-functions.js"* contains functions to calculate intervals between two notes, or find a new note from a starting note and an interval.
+- *"./intervals-functions.js"* contains functions to calculate intervals between two notes, or find a new note from a starting note and an interval.
 
-The file *"./interval.js"* contains the class Interval, which is initialised with a string containing quality and distance (as a number) of the interval (e.g.: "minor 2", "major 10", "perfect 8").
+- *"./interval.js"* contains the class Interval, which is initialised with a string containing quality and distance (as a number) of the interval (e.g.: "minor 2", "major 10", "perfect 8").
 
 #### Chords
 
-The file *"./chord-functions.js"* cointains functions that return different kind of chords and key triads.
+- *"./chord-functions.js"* cointains functions that return different kind of chords and key triads.
 
 #### Keys
 
-The file *"./keys-utils.js"* contains data structs that define key signatures and degree names.
+- *"./keys-utils.js"* contains data structs that define key signatures and degree names.
 
-The file *"./keys-functions.js"* contains functions that return the key signature from a key name.
+- *"./keys-functions.js"* contains functions that return the key signature from a key name.
 
-The file *"./scales-functions.js"* contains functions that create key scales and chromatic scales.
+- *"./scales-functions.js"* contains functions that create key scales and chromatic scales.
 
-The file *"./key.js"* contains the class Key, which is initialised with a string containing the key name (e.g.: "D minor", "F# major").
+- *"./key.js"* contains the class Key, which is initialised with a string containing the key name (e.g.: "D minor", "F# major").
 
 #### Melody
 
-The file *"./melody-utils.js"* contains data structs that define melody costruction criteria.
+- *"./melody-utils.js"* contains data structs that define melody costruction criteria.
 
-The file *"./melody-functions.js"* contains a function that returns a random melody.
+- *"./melody-functions.js"* contains a function that returns a random melody.
 
 #### Rhythm
 
-The file *"./rhythm-utils.js"* contains data structs that define note values, lengths and time signatures.
+- *"./rhythm-utils.js"* contains data structs that define note values, lengths and time signatures.
 
-The file *"./rhythm-subdivision.js"* contains functions that are combined recursively to subdivide a longer note into random smaller notes.
+- *"./rhythm-subdivision.js"* contains functions that are combined recursively to subdivide a longer note into random smaller notes.
 
-The file *"./rhythm-functions.js"* contains functions that interact with bars and key signatures, as well as create random rhythmic patterns.
+- *"./rhythm-functions.js"* contains functions that interact with bars and key signatures, as well as create random rhythmic patterns.
 
 #### Terms
 
-The file *"./terms-and-signs.js"* contains data structs that define terms required in exercises.
+- *"./terms-and-signs.js"* contains data structs that define terms required in exercises.
 
 ## Concepts
 
