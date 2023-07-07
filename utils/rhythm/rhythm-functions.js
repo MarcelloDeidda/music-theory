@@ -84,7 +84,7 @@ module.exports.findBeatValue = timeSignature => {
     return undefined;
 }
 
-module.exports.createBar = (timeSignature, minValue, maxValue, grade) => {
+module.exports.createBar = (timeSignature, minValue = "breve", maxValue = "demisemiquaver", grade = 5) => {
     if (!Object.keys(values).includes(minValue)) {
         throw new Error("Argument minValue is invalid!")
     }

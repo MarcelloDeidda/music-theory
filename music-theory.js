@@ -3,7 +3,7 @@ const { subdivideCompoundTernaryNote } = require("./utils/rhythm/rhythm-subdivis
 
 for (let i = 0; i < 1; i++) {
     try {
-        const group = createBar([12, 2], "minim", "demisemiquaver", 5);
+        const group = createBar([3, 2]);
         console.log(group)
     } catch (e) {
         console.log("ERROR");
