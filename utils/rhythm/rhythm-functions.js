@@ -1,5 +1,5 @@
 const { values, timeSignaturesTopValues, timeSignaturesBottomValues } = require("./rhythm-utils");
-const { subdivideCompoundTernaryNote, subdivideCompoundNote, subdivideNote } = require("./rhythm-subdivision");
+const { subdivideCompoundTernaryNote, subdivideCompoundNote, subdivideNote, subdivideIrregularNote } = require("./rhythm-subdivision");
 
 module.exports.findMetre = timeSignature => {
     const top = timeSignature[0];
@@ -62,6 +62,20 @@ module.exports.findWholeBarValue = timeSignature => {
 module.exports.findBeatValue = timeSignature => {
     let numOfBeats = this.calculateTimeSignatureBeats(timeSignature);
     let metre = this.findMetre(timeSignature);
+    let isIrregular = this.isIrregular(timeSignature);
+
+    if (isIrregular) {
+        switch (timeSignature[1]) {
+            case 2:
+                return "minim";
+            case 4:
+                return "crotchet";
+            case 8:
+                return "quaver";
+            case 16:
+                return "semiquaver";
+        }
+    }
 
     let beat;
 
@@ -85,6 +99,7 @@ module.exports.findBeatValue = timeSignature => {
 }
 
 module.exports.createBar = (timeSignature, minValue = "breve", maxValue = "demisemiquaver", grade = 5) => {
+    // Validating arguments
     if (!Object.keys(values).includes(minValue)) {
         throw new Error("Argument minValue is invalid!")
     }
@@ -104,8 +119,9 @@ module.exports.createBar = (timeSignature, minValue = "breve", maxValue = "demis
         throw new Error("Compound time signatures with minim beats are not available!");
     }
 
-        const wholeBarValue = this.findWholeBarValue(timeSignature);
+    const wholeBarValue = this.findWholeBarValue(timeSignature);
     const isCompound = this.isCompound(timeSignature);
+    const isIrregular = this.isIrregular(timeSignature);
 
     if (isCompound) {
         const metre = this.findMetre(timeSignature);
@@ -116,6 +132,10 @@ module.exports.createBar = (timeSignature, minValue = "breve", maxValue = "demis
             return subdivideCompoundTernaryNote(beat, minValue, maxValue, grade);
         }
         return subdivideCompoundNote(wholeBarValue, metre, minValue, maxValue, grade);
+    } else if (isIrregular) {
+        let beat = this.findBeatValue(timeSignature);
+
+        return subdivideIrregularNote(beat, timeSignature[0], minValue, maxValue, grade);
     }
     return subdivideNote(wholeBarValue, minValue, maxValue, grade);
 }

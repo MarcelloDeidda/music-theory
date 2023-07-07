@@ -258,7 +258,7 @@ module.exports.subdivideCompoundTernaryNote = (beatNote, minValue, maxValue, gra
     if (grade < 3 && maxValue === "demisemiquaver") {
         maxValue = semiquaver;
     }
-    
+
     const valueList = Object.keys(values);
 
     let currentValueIndex = valueList.indexOf(beatNote.split(" ")[1]);
@@ -275,5 +275,57 @@ module.exports.subdivideCompoundTernaryNote = (beatNote, minValue, maxValue, gra
             ...this.subdivideCompoundNote(`dotted ${valueList[currentValueIndex - 1]}`, "duple", minValue, maxValue, grade),
             ...this.subdivideNote(beatNote, minValue, maxValue, grade)
         ];
+    }
+}
+
+module.exports.subdivideIrregularNote = (beatNote, beatNum, minValue = "breve", maxValue = "demisemiquaver", grade = 5) => {
+    // Demisemiquaver are not available before Grade Three
+    if (grade < 5) {
+        throw new Error("Irregular time signatures are not available before Grade Five");
+    }
+
+    const valueList = Object.keys(values);
+
+    let currentValueIndex = valueList.indexOf(beatNote);
+
+    let random;
+
+    switch (beatNum) {
+        case 5:
+            random = Math.floor(Math.random() * 2);
+            if (random === 0) {
+                return [
+                    ...this.subdivideNote(`dotted ${valueList[currentValueIndex - 1]}`, minValue, maxValue, grade),
+                    ...this.subdivideNote(valueList[currentValueIndex - 1], minValue, maxValue, grade)
+                ]
+            } else {
+                return [
+                    ...this.subdivideNote(valueList[currentValueIndex - 1], minValue, maxValue, grade),
+                    ...this.subdivideNote(`dotted ${valueList[currentValueIndex - 1]}`, minValue, maxValue, grade)
+                ]
+            }
+
+        case 7:
+            random = Math.floor(Math.random() * 3);
+
+            if (random === 0) {
+                return [
+                    ...this.subdivideNote(`dotted ${valueList[currentValueIndex - 1]}`, minValue, maxValue, grade),
+                    ...this.subdivideNote(valueList[currentValueIndex - 2], minValue, maxValue, grade)
+                ]
+            } else if (random === 1) {
+                return [
+                    ...this.subdivideNote(valueList[currentValueIndex - 1], minValue, maxValue, grade),
+                    ...this.subdivideNote(`dotted ${valueList[currentValueIndex - 1]}`, minValue, maxValue, grade),
+                    ...this.subdivideNote(valueList[currentValueIndex - 1], minValue, maxValue, grade)
+                ]
+            } else {
+                return [
+                    ...this.subdivideNote(valueList[currentValueIndex - 2], minValue, maxValue, grade),
+                    ...this.subdivideNote(`dotted ${valueList[currentValueIndex - 1]}`, minValue, maxValue, grade),
+                ]
+            }
+        default:
+            throw new Error("Irregular time signatures should have 5 or 7 beats");
     }
 }
