@@ -18,60 +18,51 @@ This folder is organised in the following subfolders: "./chords", "./intervals",
 
 #### Notes
 
-The file "./notes-utils.js" contains several helper data structs:
+The file *"./notes-utils.js"* contains data structs that define notes and accidentals.
 
-- *array* **notes** contains the letter names of the seven notes
-- *array* **accidentals** contains the five accidentals
-- *object* **accidentalsInSemitones** contains the relationship between accidentals and semitone alteration to a note
-- *array* **chromaticScale** contains the list of enharmonic equivalent values in an octave
+The file *"./notes-functions.js"* contains functions to sort notes and get random notes.
 
-The file "./notes-functions.js" contains several helper functions:
-
-- **printKeyboard** returns an array with all white keys of a piano
-- **sortNotes** sorts and returns a list of notes in ascending order
-- **isNoteHigher** compares two notes
-- **getRandomNote** returns a random note
-- **getRandomNoteNoDouble** returns a random note avoiding double sharp or double flat accidentals
-- **getRandomNaturalNote** returns a random note avoiding accidentals
-- **getRandomNoteFromScale** returns a random note from a given scale (array containing Note objects)
+The file *"./note.js"* contains the class Note, which is initialised with a string containing letter name, accidental and octave number (e.g.: "C#4", "B3", "Fb5").
 
 #### Intervals
 
-The file "./intervals-utils.js" contains several helper data structs:
+The file *"./intervals-utils.js"* contains data structs that define interval numbers, qualities and relationship between these and the number of semitones.
 
-- *object* **qualities** contains the five interval qualities
-- *object* **intervalNumbers** contains the interval numbers from *unison* to *octave*
-- *object* **semitonesToIntervals** contains the relationship between semitone count, interval number and interval quality
+The file *"./intervals-functions.js"* contains functions to calculate intervals between two notes, or find a new note from a starting note and an interval.
 
-The file "./intervals-functions.js" contains the following functions:
-
-- *local* **calculateDistance(firstNote, secondNote)** calculates the number distance between two notes
-- *local* **calculateSemitones(firstNote, secondNote)** calculates the number of semitones between two notes
-- **calculateInterval(firstNote, secondNote)** calculates the interval between two notes
-- **calculateNoteFromInterval(note, interval, asc = true)** finds the note with a distance of **interval** higher or lower (depending on **asc**) than **note**
-
-The file "./interval.js" contains the class Interval, containing the following methods:
-
-- *constructor* initialises the class with **interval** and **semitones** parameters (the second is set to *null* by default)
-- **getInterval** returns the name of the interval (quality + distance)
-- **getDistance** returns the distance of the interval as an integer
-- **getSimpleDistance** returns the simple distance (ignoring compound) of the interval as an integer
-- **getNumber** returns the number of the interval as a string (e.g. "third")
-- **getQuality** returns the quality of the interval
-- **getSemitones** returns the number of semitones as an integer
-- **isCompound** returns a boolean
-- **isClassified** returns a boolean representing whether or not the interval's quality is one of the five provided by "./intervals-utils.js"
+The file *"./interval.js"* contains the class Interval, which is initialised with a string containing quality and distance (as a number) of the interval (e.g.: "minor 2", "major 10", "perfect 8").
 
 #### Chords
 
-The file "./chord-functions.js" cointains the following functions:
+The file *"./chord-functions.js"* cointains functions that return different kind of chords and key triads.
 
-- **majorChord(root)** returns a major chord from a single note
-- **minorChord(root)** returns a minor chord from a single note
-- **diminishedChord(root)** returns a diminished chord from a single note
-- **augmentedChord(root)** returns a augmented chord from a single note
-- **dominantSeventh(root)** returns a dominant seventh chord from a single note
-- **triadFromKey(degree, tonic, keySignature)** returns a triad of a scale starting at **tonic**
+#### Keys
+
+The file *"./keys-utils.js"* contains data structs that define key signatures and degree names.
+
+The file *"./keys-functions.js"* contains functions that return the key signature from a key name.
+
+The file *"./scales-functions.js"* contains functions that create key scales and chromatic scales.
+
+The file *"./key.js"* contains the class Key, which is initialised with a string containing the key name (e.g.: "D minor", "F# major").
+
+#### Melody
+
+The file *"./melody-utils.js"* contains data structs that define melody costruction criteria.
+
+The file *"./melody-functions.js"* contains a function that returns a random melody.
+
+#### Rhythm
+
+The file *"./rhythm-utils.js"* contains data structs that define note values, lengths and time signatures.
+
+The file *"./rhythm-subdivision.js"* contains functions that are combined recursively to subdivide a longer note into random smaller notes.
+
+The file *"./rhythm-functions.js"* contains functions that interact with bars and key signatures, as well as create random rhythmic patterns.
+
+#### Terms
+
+The file *"./terms-and-signs.js"* contains data structs that define terms required in exercises.
 
 ## Concepts
 
