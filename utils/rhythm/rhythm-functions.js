@@ -38,11 +38,52 @@ module.exports.checkBarBeats = (bar, timeSignature = [4, 4]) => {
     return this.calculateTimeSignatureBeats(timeSignature[0], timeSignature[1]) === bar.reduce((a, b) => a + b.getBeats(), 0)
 }
 
-module.exports.getRandomTimeSignature = () => {
-    let top = this.timeSignaturesTopValues[Math.floor(Math.random() * this.timeSignaturesTopValues.length)]
-    let bottom = this.timeSignaturesBottomValues[Math.floor(Math.random() * this.timeSignaturesBottomValues.length)]
+module.exports.getRandomTimeSignature = grade => {
+    let timeSignatures = [
+        [2, 4],
+        [3, 4],
+        [4, 4]
+    ];
 
-    return [top, bottom];
+    if (grade > 1) {
+        timeSignatures = timeSignatures.concat([
+            [2, 2],
+            [3, 2],
+            [4, 2],
+            [3, 8]
+        ]);
+    }
+
+    if (grade > 2) {
+        timeSignatures = timeSignatures.concat([
+            [6, 8],
+            [9, 8],
+            [12, 8]
+        ]);
+    }
+
+    if (grade > 3) {
+        timeSignatures = timeSignatures.concat([
+            [6, 4],
+            [9, 4],
+            [6, 16],
+            [9, 16],
+            [12, 16]
+        ]);
+    }
+
+    if (grade > 4) {
+        timeSignatures = timeSignatures.concat([
+            [5, 4],
+            [7, 4],
+            [5, 8],
+            [7, 8]
+        ]);
+    }
+
+    let random = Math.floor(Math.random() * timeSignatures.length);
+
+    return timeSignatures[random];
 }
 
 module.exports.findWholeBarValue = timeSignature => {
