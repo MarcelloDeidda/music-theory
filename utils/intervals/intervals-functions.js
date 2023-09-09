@@ -90,3 +90,24 @@ module.exports.calculateNoteFromInterval = (note, interval, asc = true) => {
     // MUST THROW ERROR IF chromaticAlterationIndex IS UNDEFINED
     return new Note(newNote);
 }
+
+module.exports.availableIntervalNumbers = () => {
+    const availableNumbers = [];
+
+    for (let number in intervalNumbers) {
+        availableNumbers.push(intervalNumbers[number])
+    }
+
+    return availableNumbers;
+}
+
+module.exports.availableIntervalQualities = grade => {
+    const availableQualities = ["minor", "perfect", "major"];
+
+    if (grade > 3) {
+        availableQualities.unshift("diminished");
+        availableQualities.push("augmented");
+    }
+
+    return availableQualities;
+}
