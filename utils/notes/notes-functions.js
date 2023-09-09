@@ -18,6 +18,24 @@ module.exports.printKeyboard = () => {
     return keyboard;
 }
 
+module.exports.availableAccidentals = grade => {
+    const availableAccidentals = accidentals.slice();
+    let index;
+
+    if (grade < 4) {
+        index = availableAccidentals.indexOf("B");
+        availableAccidentals.splice(index, 1);
+
+        index = availableAccidentals.indexOf("x");
+        availableAccidentals.splice(index, 1);
+    }
+
+    index = availableAccidentals.indexOf("");
+    availableAccidentals[index] = null;
+
+    return availableAccidentals;
+}
+
 // This function sorts a list of notes
 module.exports.sortNotes = (...noteList) => {
     const newNoteList = noteList.slice();
