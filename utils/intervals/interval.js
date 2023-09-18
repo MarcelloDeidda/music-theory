@@ -37,7 +37,7 @@ const Interval = class {
 
     getQuality() {
         const interval = this.#interval.split(" ");
-        if (interval.length > 1) {
+        if (interval[0]) {
             return interval[0];
         } else {
             return null;
