@@ -76,7 +76,7 @@ module.exports.isNoteHigher = (note1, note2) => {
 
 // This function checks that the second note is higher than the first
 module.exports.isNoteinRange = (lowerNote, note, higherNote) => {
-    return isNoteHigher(lowerNote, note) && isNoteHigher(note, higherNote);
+    return this.isNoteHigher(lowerNote, note) && this.isNoteHigher(note, higherNote);
 }
 
 // This function returns a random note
