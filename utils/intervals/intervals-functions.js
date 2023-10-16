@@ -44,7 +44,7 @@ module.exports.calculateInterval = (firstNote, secondNote) => {
     let number = intervalNumbers[simpleDistance];
     let quality = semitonesToIntervals[semitones][number];
 
-    const interval = new Interval(`${quality ? `${quality}` : ""} ${distance}`, semitones);
+    const interval = new Interval(`${quality ? `${quality} ` : ""}${distance}`, semitones);
 
     return interval;
 }
