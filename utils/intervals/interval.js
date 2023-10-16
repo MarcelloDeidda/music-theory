@@ -16,7 +16,12 @@ const Interval = class {
     }
 
     getDistance() {
-        return parseInt(this.#interval.split(" ")[1]);
+        const interval = this.#interval.split(" ");
+        if (interval.length > 1) {
+            return parseInt(interval[1]);
+        } else {
+            return parseInt(interval[0]);
+        }
     }
 
     getSimpleDistance() {
@@ -37,7 +42,7 @@ const Interval = class {
 
     getQuality() {
         const interval = this.#interval.split(" ");
-        if (interval[0]) {
+        if (interval.length > 1) {
             return interval[0];
         } else {
             return null;
