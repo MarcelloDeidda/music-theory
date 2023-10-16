@@ -42,7 +42,7 @@ const Note = class {
     }
 
     getValue() {
-        return `${this.#dotted ? "dotted " : ""} ${this.#value}`;
+        return `${this.#dotted ? "dotted " : ""}${this.#value}`;
     }
 
     getBeats() {
