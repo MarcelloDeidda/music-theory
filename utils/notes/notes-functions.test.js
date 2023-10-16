@@ -1,5 +1,5 @@
 const Note = require("./note");
-const { isNoteHigher, isNoteinRange, sortNotes, getRandomNote } = require("./notes-functions");
+const { isNoteHigher, isNoteinRange, sortNotes, getRandomNote, availableAccidentals } = require("./notes-functions");
 
 describe("Note sorting", () => {
     test("Three unsorted notes", () => {
@@ -99,5 +99,16 @@ describe("Note in range", () => {
         const note = new Note("Cb4");
 
         expect(isNoteinRange(lowerNote, note, higherNote)).toBe(false);
+    });
+});
+
+describe("Available accidentals", () => {
+    test("Until Grade Three", () => {
+        expect(availableAccidentals(3)).toEqual(["b", null, "#"]);
+    });
+
+    
+    test("After Grade Three", () => {
+        expect(availableAccidentals(4)).toEqual(["B", "b", null, "#", "x"]);
     });
 });
