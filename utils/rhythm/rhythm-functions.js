@@ -135,8 +135,6 @@ module.exports.findBeatValue = timeSignature => {
             return `dotted ${value}`
         }
     }
-
-    return undefined;
 }
 
 module.exports.createBar = (timeSignature, minValue = "breve", maxValue = "demisemiquaver", grade = 5) => {
