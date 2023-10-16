@@ -12,7 +12,7 @@ module.exports.findMetre = timeSignature => {
         return "quadruple";
     }
 
-    return undefined;
+    return "irregular";
 }
 
 module.exports.isCompound = timeSignature => {
