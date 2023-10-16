@@ -1,5 +1,23 @@
 const Note = require("./note");
-const { isNoteHigher, isNoteinRange } = require("./notes-functions");
+const { isNoteHigher, isNoteinRange, sortNotes, getRandomNote } = require("./notes-functions");
+
+describe("Note sorting", () => {
+    test("Three unsorted notes", () => {
+        const note1 = new Note("F4");
+        const note2 = new Note("G3");
+        const note3 = new Note("C2");
+
+        expect(sortNotes(note1, note2, note3).map(note => note.getNote())).toEqual(["C2", "G3", "F4"]);
+    });
+
+    test("Three sorted notes", () => {
+        const note1 = new Note("F4");
+        const note2 = new Note("G3");
+        const note3 = new Note("C2");
+
+        expect(sortNotes(note3, note2, note1).map(note => note.getNote())).toEqual(["C2", "G3", "F4"]);
+    });
+});
 
 describe("Note comparison", () => {
     test("Higher note - Same octave, different letter name", () => {
@@ -43,7 +61,7 @@ describe("Note comparison", () => {
 
         expect(isNoteHigher(note1, note2)).toBe(false);
     })
-})
+});
 
 describe("Note in range", () => {
     let lowerNote, higherNote;
@@ -82,4 +100,4 @@ describe("Note in range", () => {
 
         expect(isNoteinRange(lowerNote, note, higherNote)).toBe(false);
     });
-})
+});
