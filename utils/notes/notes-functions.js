@@ -74,11 +74,13 @@ module.exports.isNoteHigher = (note1, note2) => {
     return note1.getNote() === sortedNotes[0].getNote();
 }
 
+// SHOULD ACCEPT TWO NOTES AS BOUNDARIES
 // This function checks that the second note is higher than the first
 module.exports.isNoteinRange = (lowerNote, note, higherNote) => {
     return this.isNoteHigher(lowerNote, note) && this.isNoteHigher(note, higherNote);
 }
 
+// SHOULD ACCEPT TWO NOTES AS BOUNDARIES
 // This function returns a random note
 module.exports.getRandomNote = (lowOctave, highOctave) => {
     let octave = Math.floor(Math.random() * (highOctave - lowOctave + 1)) + lowOctave;
@@ -88,6 +90,7 @@ module.exports.getRandomNote = (lowOctave, highOctave) => {
     return new Note(`${note}${accidental}${octave}`);
 }
 
+// SHOULD ACCEPT TWO NOTES AS BOUNDARIES
 // This function returns a random note avoiding double accidentals
 module.exports.getRandomNoteNoDouble = (lowOctave, highOctave) => {
     let octave = Math.floor(Math.random() * (highOctave - lowOctave + 1)) + lowOctave;
