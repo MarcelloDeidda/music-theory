@@ -2,12 +2,12 @@ import { intervalNumbers, semitonesToIntervals } from "./intervals-utils";
 
 import { IntervalInterface } from "../../ts/interfaces/interfaces";
 
-const Interval = class implements IntervalInterface{
+const Interval = class implements IntervalInterface {
     // This object is initialised with a string containing quality and number
     // (as integer number) of the required interval
     constructor(
         private interval: string,
-        private semitones: number
+        private semitones: number | undefined = undefined
     ) {
     }
 
@@ -49,8 +49,18 @@ const Interval = class implements IntervalInterface{
         }
     }
 
-    getSemitones(): number {
-        return this.semitones;
+    getSemitones(): number | undefined {
+        if (this.semitones) {
+            return this.semitones;
+        } else {
+            for (let semitoneCount in semitonesToIntervals) {
+                if (semitonesToIntervals[semitoneCount][this.getNumber()] === this.getQuality()) {
+                    return parseInt(semitoneCount);
+                }
+            }
+        }
+
+        return undefined;
     }
 
     isCompound(): boolean {

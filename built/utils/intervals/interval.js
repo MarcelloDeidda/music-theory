@@ -4,7 +4,7 @@ const intervals_utils_1 = require("./intervals-utils");
 const Interval = class {
     // This object is initialised with a string containing quality and number
     // (as integer number) of the required interval
-    constructor(interval, semitones) {
+    constructor(interval, semitones = undefined) {
         this.interval = interval;
         this.semitones = semitones;
     }
@@ -41,7 +41,17 @@ const Interval = class {
         }
     }
     getSemitones() {
-        return this.semitones;
+        if (this.semitones) {
+            return this.semitones;
+        }
+        else {
+            for (let semitoneCount in intervals_utils_1.semitonesToIntervals) {
+                if (intervals_utils_1.semitonesToIntervals[semitoneCount][this.getNumber()] === this.getQuality()) {
+                    return parseInt(semitoneCount);
+                }
+            }
+        }
+        return undefined;
     }
     isCompound() {
         return this.getDistance() > 8;
