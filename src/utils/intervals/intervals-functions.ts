@@ -53,27 +53,31 @@ export const calculateInterval = (firstNote: NoteInterface, secondNote: NoteInte
 }
 
 // Calculate Note from Note object and Interval object (optional ascending argument)
-export const calculateNoteFromInterval = (note: NoteInterface, interval: IntervalInterface, direction: directionType): NoteInterface => {
+export const calculateNoteFromInterval = (note: NoteInterface, interval: IntervalInterface, direction: directionType = "asc"): NoteInterface => {
     const keyboard = printKeyboard();
     let chromaticIndex = chromaticScale.findIndex(notes => notes.includes(note.getNoteWithoutOctave()));
     let semitones = interval.getSemitones();
 
-    if (direction === "asc") {
-        while (semitones > 0) {
-            semitones--;
-            if (chromaticIndex < chromaticScale.length - 1) {
-                chromaticIndex++;
-            } else {
-                chromaticIndex = 0;
-            }
-        }
+    if (semitones === undefined) {
+        throw new Error("Cannot calculate note from undefined-semitone interval!");
     } else {
-        while (semitones > 0) {
-            semitones--;
-            if (chromaticIndex > 0) {
-                chromaticIndex--;
-            } else {
-                chromaticIndex = chromaticScale.length - 1;
+        if (direction === "asc") {
+            while (semitones > 0) {
+                semitones--;
+                if (chromaticIndex < chromaticScale.length - 1) {
+                    chromaticIndex++;
+                } else {
+                    chromaticIndex = 0;
+                }
+            }
+        } else {
+            while (semitones > 0) {
+                semitones--;
+                if (chromaticIndex > 0) {
+                    chromaticIndex--;
+                } else {
+                    chromaticIndex = chromaticScale.length - 1;
+                }
             }
         }
     }

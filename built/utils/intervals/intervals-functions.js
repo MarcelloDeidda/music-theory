@@ -45,29 +45,34 @@ const calculateInterval = (firstNote, secondNote) => {
 };
 exports.calculateInterval = calculateInterval;
 // Calculate Note from Note object and Interval object (optional ascending argument)
-const calculateNoteFromInterval = (note, interval, direction) => {
+const calculateNoteFromInterval = (note, interval, direction = "asc") => {
     const keyboard = (0, notes_functions_1.printKeyboard)();
     let chromaticIndex = notes_utils_1.chromaticScale.findIndex(notes => notes.includes(note.getNoteWithoutOctave()));
     let semitones = interval.getSemitones();
-    if (direction === "asc") {
-        while (semitones > 0) {
-            semitones--;
-            if (chromaticIndex < notes_utils_1.chromaticScale.length - 1) {
-                chromaticIndex++;
-            }
-            else {
-                chromaticIndex = 0;
-            }
-        }
+    if (semitones === undefined) {
+        throw new Error("Cannot calculate note from undefined-semitone interval!");
     }
     else {
-        while (semitones > 0) {
-            semitones--;
-            if (chromaticIndex > 0) {
-                chromaticIndex--;
+        if (direction === "asc") {
+            while (semitones > 0) {
+                semitones--;
+                if (chromaticIndex < notes_utils_1.chromaticScale.length - 1) {
+                    chromaticIndex++;
+                }
+                else {
+                    chromaticIndex = 0;
+                }
             }
-            else {
-                chromaticIndex = notes_utils_1.chromaticScale.length - 1;
+        }
+        else {
+            while (semitones > 0) {
+                semitones--;
+                if (chromaticIndex > 0) {
+                    chromaticIndex--;
+                }
+                else {
+                    chromaticIndex = notes_utils_1.chromaticScale.length - 1;
+                }
             }
         }
     }
