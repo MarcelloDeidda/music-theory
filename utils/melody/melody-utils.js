@@ -1,1 +1,0 @@
-module.exports.startingDegrees = [1, 3, 5];
