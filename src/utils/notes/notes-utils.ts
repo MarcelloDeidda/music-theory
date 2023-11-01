@@ -19,8 +19,6 @@ export const chromaticScale: string[][] = [
     ["Ax", "B", "Cb"]
 ];
 
-
-
 export const accidentalsInSemitones: stringToNumber = {
     "B": -2,
     "b": -1,
