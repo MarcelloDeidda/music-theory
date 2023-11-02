@@ -1,7 +1,5 @@
 import { notes, accidentals } from "./notes-utils";
 
-import Note from "./note";
-
 import { NoteInterface } from "../../ts/interfaces/interfaces";
 import { gradeType } from "../../ts/types/types";
 
@@ -80,39 +78,4 @@ export const isNoteHigher = (note1: NoteInterface, note2: NoteInterface): boolea
 // This function checks that the second note is higher than the first
 export const isNoteinRange = (lowerNote: NoteInterface, note: NoteInterface, higherNote: NoteInterface): boolean => {
     return isNoteHigher(lowerNote, note) && isNoteHigher(note, higherNote);
-}
-
-// SHOULD ACCEPT TWO NOTES AS BOUNDARIES
-// This function returns a random note
-export const getRandomNote = (lowOctave: number, highOctave: number) => {
-    let octave = Math.floor(Math.random() * (highOctave - lowOctave + 1)) + lowOctave;
-    let note = notes[Math.floor(Math.random() * 7)];
-    let accidental = accidentals[Math.floor(Math.random() * 5)];
-
-    return new Note(`${note}${accidental}${octave}`);
-}
-
-// SHOULD ACCEPT TWO NOTES AS BOUNDARIES
-// This function returns a random note avoiding double accidentals
-export const getRandomNoteNoDouble = (lowOctave: number, highOctave: number) => {
-    let octave = Math.floor(Math.random() * (highOctave - lowOctave + 1)) + lowOctave;
-    let note = notes[Math.floor(Math.random() * 7)];
-    let accidental = accidentals[Math.ceil(Math.random() * 3)];
-
-    return new Note(`${note}${accidental}${octave}`);
-}
-
-// This function returns a random note avoiding accidentals
-export const getRandomNaturalNote = (lowOctave: number, highOctave: number) => {
-    let octave = Math.floor(Math.random() * (highOctave - lowOctave + 1)) + lowOctave;
-    let note = notes[Math.floor(Math.random() * 7)];
-
-    return new Note(`${note}${octave}`);
-}
-
-// This function returns a random note from a scale (list of Note objects)
-export const getRandomNoteFromScale = (scale: any[]) => {
-    let random = Math.floor(Math.random() * 8);
-
-    return scale[random];
 }
