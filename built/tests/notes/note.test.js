@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const globals_1 = require("@jest/globals");
-const note_1 = __importDefault(require("../utils/notes/note"));
+const note_1 = __importDefault(require("../../utils/notes/note"));
 (0, globals_1.describe)("Test Note class", () => {
     const note1 = new note_1.default("C4", "crotchet", true);
     const note2 = new note_1.default("Ab5", "minim", false);
@@ -25,9 +25,9 @@ const note_1 = __importDefault(require("../utils/notes/note"));
         (0, globals_1.expect)(note3.getLetterName()).toBe("F");
     });
     (0, globals_1.test)("Get octave", () => {
-        (0, globals_1.expect)(note1.getOctave()).toBe("4");
-        (0, globals_1.expect)(note2.getOctave()).toBe("5");
-        (0, globals_1.expect)(note3.getOctave()).toBe("3");
+        (0, globals_1.expect)(note1.getOctave()).toBe(4);
+        (0, globals_1.expect)(note2.getOctave()).toBe(5);
+        (0, globals_1.expect)(note3.getOctave()).toBe(3);
     });
     (0, globals_1.test)("Get accidental", () => {
         (0, globals_1.expect)(note1.getAccidental()).toBe(null);

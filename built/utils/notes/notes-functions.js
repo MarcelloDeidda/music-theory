@@ -1,11 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getRandomNoteFromScale = exports.getRandomNaturalNote = exports.getRandomNoteNoDouble = exports.getRandomNote = exports.isNoteinRange = exports.isNoteHigher = exports.sortNotes = exports.availableAccidentals = exports.printKeyboard = void 0;
+exports.isNoteinRange = exports.isNoteHigher = exports.sortNotes = exports.availableAccidentals = exports.printKeyboard = void 0;
 const notes_utils_1 = require("./notes-utils");
-const note_1 = __importDefault(require("./note"));
 // This function returns the white keys of a keyboard
 const printKeyboard = () => {
     const keyboard = [];
@@ -84,34 +80,3 @@ const isNoteinRange = (lowerNote, note, higherNote) => {
     return (0, exports.isNoteHigher)(lowerNote, note) && (0, exports.isNoteHigher)(note, higherNote);
 };
 exports.isNoteinRange = isNoteinRange;
-// SHOULD ACCEPT TWO NOTES AS BOUNDARIES
-// This function returns a random note
-const getRandomNote = (lowOctave, highOctave) => {
-    let octave = Math.floor(Math.random() * (highOctave - lowOctave + 1)) + lowOctave;
-    let note = notes_utils_1.notes[Math.floor(Math.random() * 7)];
-    let accidental = notes_utils_1.accidentals[Math.floor(Math.random() * 5)];
-    return new note_1.default(`${note}${accidental}${octave}`);
-};
-exports.getRandomNote = getRandomNote;
-// SHOULD ACCEPT TWO NOTES AS BOUNDARIES
-// This function returns a random note avoiding double accidentals
-const getRandomNoteNoDouble = (lowOctave, highOctave) => {
-    let octave = Math.floor(Math.random() * (highOctave - lowOctave + 1)) + lowOctave;
-    let note = notes_utils_1.notes[Math.floor(Math.random() * 7)];
-    let accidental = notes_utils_1.accidentals[Math.ceil(Math.random() * 3)];
-    return new note_1.default(`${note}${accidental}${octave}`);
-};
-exports.getRandomNoteNoDouble = getRandomNoteNoDouble;
-// This function returns a random note avoiding accidentals
-const getRandomNaturalNote = (lowOctave, highOctave) => {
-    let octave = Math.floor(Math.random() * (highOctave - lowOctave + 1)) + lowOctave;
-    let note = notes_utils_1.notes[Math.floor(Math.random() * 7)];
-    return new note_1.default(`${note}${octave}`);
-};
-exports.getRandomNaturalNote = getRandomNaturalNote;
-// This function returns a random note from a scale (list of Note objects)
-const getRandomNoteFromScale = (scale) => {
-    let random = Math.floor(Math.random() * 8);
-    return scale[random];
-};
-exports.getRandomNoteFromScale = getRandomNoteFromScale;

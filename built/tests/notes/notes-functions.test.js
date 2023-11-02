@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const globals_1 = require("@jest/globals");
-const note_1 = __importDefault(require("../utils/notes/note"));
-const notes_functions_1 = require("../utils/notes/notes-functions");
+const note_1 = __importDefault(require("../../utils/notes/note"));
+const notes_functions_1 = require("../../utils/notes/notes-functions");
 (0, globals_1.describe)("Note sorting", () => {
     (0, globals_1.test)("Three unsorted notes", () => {
         const note1 = new note_1.default("F4");

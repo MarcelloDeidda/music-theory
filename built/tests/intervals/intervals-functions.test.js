@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const globals_1 = require("@jest/globals");
-const note_1 = __importDefault(require("../utils/notes/note"));
-const interval_1 = __importDefault(require("../utils/intervals/interval"));
-const intervals_functions_1 = require("../utils/intervals/intervals-functions");
+const note_1 = __importDefault(require("../../utils/notes/note"));
+const interval_1 = __importDefault(require("../../utils/intervals/interval"));
+const intervals_functions_1 = require("../../utils/intervals/intervals-functions");
 (0, globals_1.describe)("Calculate interval", () => {
     const note1 = new note_1.default("G4");
     (0, globals_1.test)("Minor 2nd", () => {

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const globals_1 = require("@jest/globals");
-const rhythm_functions_1 = require("../utils/rhythm/rhythm-functions");
+const rhythm_functions_1 = require("../../utils/rhythm/rhythm-functions");
 (0, globals_1.describe)("Calculate metre", () => {
     (0, globals_1.test)("Duple", () => {
         (0, globals_1.expect)((0, rhythm_functions_1.findMetre)([6, 4])).toBe("duple");

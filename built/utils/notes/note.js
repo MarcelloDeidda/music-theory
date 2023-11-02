@@ -20,7 +20,7 @@ const Note = class {
         return this.note[0];
     }
     getOctave() {
-        return this.note.slice(this.note.length - 1);
+        return parseInt(this.note.slice(this.note.length - 1));
     }
     getAccidental() {
         return this.note.length === 3 ? this.note[1] : null;

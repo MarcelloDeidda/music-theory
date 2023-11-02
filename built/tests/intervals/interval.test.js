@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const globals_1 = require("@jest/globals");
-const interval_1 = __importDefault(require("../utils/intervals/interval"));
+const interval_1 = __importDefault(require("../../utils/intervals/interval"));
 (0, globals_1.describe)("Test interval class", () => {
     const interval1 = new interval_1.default("minor 3", 3);
     const interval2 = new interval_1.default("perfect 11", 5);
