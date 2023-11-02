@@ -4,6 +4,7 @@
   "description": "The aim of this program is to provide music theory students with infinite exercises, in order to practise concepts from grade 1 to 5 (ABRSM).",
   "main": "music-theory.js",
   "scripts": {
+    "start": "node ./built/music-theory.js",
     "test": "jest"
   },
   "repository": {
