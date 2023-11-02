@@ -22,5 +22,8 @@ jobs:
             - name: Install dependencies
               run: npm install
             
+            - name: Build JS code
+              run: npx tsc
+            
             - name: Run Jest tests
               run: npm test
