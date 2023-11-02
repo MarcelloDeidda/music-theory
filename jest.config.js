@@ -1,6 +1,7 @@
 const config = {
     verbose: true,
-    collectCoverage: true
+    collectCoverage: true,
+    testPathIgnorePatterns: ["src"]
 };
 
 module.exports = config;
