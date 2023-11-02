@@ -1,10 +1,3 @@
-import { getRandomNoteFromScale } from "../notes/notes-functions";
-import { calculateInterval } from "../intervals/intervals-functions";
-import { startingDegrees } from "./melody-utils";
-import { getRandomKey } from "../keys/keys-generator-functions";
-
-import Note from "../notes/note";
-
 import { gradeType, timeSignatureType } from "../../ts/types/types";
 import { KeyInterface, MinorScaleInterface, NoteInterface } from "../../ts/interfaces/interfaces";
 /*
