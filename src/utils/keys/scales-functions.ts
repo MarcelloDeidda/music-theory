@@ -42,7 +42,7 @@ export const createChromaticScale = (startingNote: NoteInterface, direction: dir
 
         // Check this error!
         while (
-            nextNote.getNoteWithoutOctave === "undefined" ||
+            nextNote.getNoteWithoutOctave() === "undefined" ||
             (nextNote.getAccidentalInSemitones() < -1 || nextNote.getAccidentalInSemitones() > 1)
         ) {
             random = random === 0 ? 1 : 0;

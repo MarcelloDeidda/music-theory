@@ -35,7 +35,7 @@ const createChromaticScale = (startingNote, direction = "asc") => {
         let random = Math.floor(Math.random() * 2);
         let nextNote = (0, intervals_functions_1.calculateNoteFromInterval)(chromaticScale[chromaticScale.length - 1], new interval_1.default(intervals[random]), direction);
         // Check this error!
-        while (nextNote.getNoteWithoutOctave === "undefined" ||
+        while (nextNote.getNoteWithoutOctave() === "undefined" ||
             (nextNote.getAccidentalInSemitones() < -1 || nextNote.getAccidentalInSemitones() > 1)) {
             random = random === 0 ? 1 : 0;
             nextNote = (0, intervals_functions_1.calculateNoteFromInterval)(chromaticScale[chromaticScale.length - 1], new interval_1.default(intervals[random]), direction);
