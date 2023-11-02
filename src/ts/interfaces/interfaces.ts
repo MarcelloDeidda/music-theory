@@ -38,7 +38,7 @@ export interface NoteInterface {
 
     getLetterName(): string;
 
-    getOctave(): string;
+    getOctave(): number;
 
     getAccidental(): string | null;
 

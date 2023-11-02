@@ -23,8 +23,8 @@ const Note = class implements NoteInterface {
         return this.note[0];
     }
 
-    getOctave(): string {
-        return this.note.slice(this.note.length - 1);
+    getOctave(): number {
+        return parseInt(this.note.slice(this.note.length - 1));
     }
 
     getAccidental(): string | null {
