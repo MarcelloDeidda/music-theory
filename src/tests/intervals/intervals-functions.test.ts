@@ -1,8 +1,8 @@
 import {describe, test, expect} from "@jest/globals";
 
-import Note from "../utils/notes/note";
-import Interval from "../utils/intervals/interval";
-import { calculateInterval, calculateNoteFromInterval, availableIntervalNumbers, availableIntervalQualities } from "../utils/intervals/intervals-functions";
+import Note from "../../utils/notes/note";
+import Interval from "../../utils/intervals/interval";
+import { calculateInterval, calculateNoteFromInterval, availableIntervalNumbers, availableIntervalQualities } from "../../utils/intervals/intervals-functions";
 
 describe("Calculate interval", () => {
     const note1 = new Note("G4");

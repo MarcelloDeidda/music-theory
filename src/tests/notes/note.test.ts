@@ -1,6 +1,6 @@
 import {describe, test, expect} from "@jest/globals";
 
-import Note from "../utils/notes/note";
+import Note from "../../utils/notes/note";
 
 describe("Test Note class", () => {
     const note1 = new Note("C4", "crotchet", true);
@@ -26,9 +26,9 @@ describe("Test Note class", () => {
     });
 
     test("Get octave", () => {
-        expect(note1.getOctave()).toBe("4");
-        expect(note2.getOctave()).toBe("5");
-        expect(note3.getOctave()).toBe("3");
+        expect(note1.getOctave()).toBe(4);
+        expect(note2.getOctave()).toBe(5);
+        expect(note3.getOctave()).toBe(3);
     });
 
     test("Get accidental", () => {

@@ -1,6 +1,6 @@
 import { describe, test, expect } from "@jest/globals";
 
-import { findMetre, isCompound, isIrregular, calculateTimeSignatureBeats, findWholeBarValue, findBeatValue } from "../utils/rhythm/rhythm-functions";
+import { findMetre, isCompound, isIrregular, calculateTimeSignatureBeats, findWholeBarValue, findBeatValue } from "../../utils/rhythm/rhythm-functions";
 
 describe("Calculate metre", () => {
     test("Duple", () => {
