@@ -107,7 +107,7 @@ const findBeatValue = (timeSignature) => {
             case 16:
                 return "semiquaver";
             default:
-                return undefined;
+                throw new Error("Time signature bottom value can only be 2, 4, 8 or 16!");
         }
     }
     let beat;
@@ -128,7 +128,7 @@ const findBeatValue = (timeSignature) => {
             return `dotted ${value}`;
         }
     }
-    return undefined;
+    throw new Error("Unexpected error occourred while finding beat value!");
 };
 exports.findBeatValue = findBeatValue;
 const createBar = (timeSignature, minValue = "breve", maxValue = "demisemiquaver", grade = 5) => {
@@ -144,12 +144,17 @@ const createBar = (timeSignature, minValue = "breve", maxValue = "demisemiquaver
             let beat = (0, exports.findBeatValue)(timeSignature);
             return (0, rhythm_subdivision_1.subdivideCompoundTernaryNote)(beat, minValue, maxValue, grade);
         }
-        return (0, rhythm_subdivision_1.subdivideCompoundNote)(wholeBarValue, metre, minValue, maxValue, grade);
+        if (typeof wholeBarValue === "string") {
+            return (0, rhythm_subdivision_1.subdivideCompoundNote)(wholeBarValue, metre, minValue, maxValue, grade);
+        }
     }
     else if (isBarIrregular) {
         let beat = (0, exports.findBeatValue)(timeSignature);
         return (0, rhythm_subdivision_1.subdivideIrregularNote)(beat, timeSignature[0], minValue, maxValue, grade);
     }
-    return (0, rhythm_subdivision_1.subdivideNote)(wholeBarValue, minValue, maxValue, grade);
+    if (typeof wholeBarValue === "string") {
+        return (0, rhythm_subdivision_1.subdivideNote)(wholeBarValue, minValue, maxValue, grade);
+    }
+    throw new Error("Unexpected error occourred while creating bar!");
 };
 exports.createBar = createBar;
