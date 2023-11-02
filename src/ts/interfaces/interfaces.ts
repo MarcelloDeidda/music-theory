@@ -1,5 +1,3 @@
-import { gradeType } from "../types/types"
-
 export interface stringToNumber {
     [key: string]: number
 }
