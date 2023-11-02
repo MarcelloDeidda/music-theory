@@ -2,11 +2,9 @@ name: Unit Tests
 
 on:
     push:
-        branches:
-            master, typescript-conversion
+        branches: master
     pull_request:
-        branches:
-            master
+        branches: master
 
 jobs:
     test:
