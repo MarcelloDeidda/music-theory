@@ -1,0 +1,1 @@
+export const startingDegrees: number[] = [1, 3, 5];
