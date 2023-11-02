@@ -1,5 +1,9 @@
-const Note = require("../src/utils/notes/note");
-const { isNoteHigher, isNoteinRange, sortNotes, getRandomNote, availableAccidentals } = require("../src/utils/notes/notes-functions");
+import {describe, test, expect, beforeEach} from "@jest/globals";
+
+import Note from "../utils/notes/note";
+import { isNoteHigher, isNoteinRange, sortNotes, getRandomNote, availableAccidentals } from "../utils/notes/notes-functions";
+
+import { NoteInterface } from "../ts/interfaces/interfaces";
 
 describe("Note sorting", () => {
     test("Three unsorted notes", () => {
@@ -64,7 +68,7 @@ describe("Note comparison", () => {
 });
 
 describe("Note in range", () => {
-    let lowerNote, higherNote;
+    let lowerNote: NoteInterface, higherNote: NoteInterface;
 
     beforeEach(() => {
         lowerNote = new Note("C4");

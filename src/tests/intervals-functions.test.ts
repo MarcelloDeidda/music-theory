@@ -1,6 +1,8 @@
-const Note = require("../src/utils/notes/note");
-const Interval = require("../src/utils/intervals/interval");
-const { calculateInterval, calculateNoteFromInterval, availableIntervalNumbers, availableIntervalQualities } = require("../src/utils/intervals/intervals-functions");
+import {describe, test, expect} from "@jest/globals";
+
+import Note from "../utils/notes/note";
+import Interval from "../utils/intervals/interval";
+import { calculateInterval, calculateNoteFromInterval, availableIntervalNumbers, availableIntervalQualities } from "../utils/intervals/intervals-functions";
 
 describe("Calculate interval", () => {
     const note1 = new Note("G4");
@@ -72,13 +74,13 @@ describe("Calculate note from interval", () => {
     test("Ascending dinimished 4", () => {
         const interval = new Interval("dinimished 4", 4);
 
-        expect(calculateNoteFromInterval(note, interval, true).getNote()).toBe("Cb5");
+        expect(calculateNoteFromInterval(note, interval, "asc").getNote()).toBe("Cb5");
     });
     
     test("Descending augmented 5", () => {
         const interval = new Interval("augmented 5", 8);
 
-        expect(calculateNoteFromInterval(note, interval, false).getNote()).toBe("Cb4");
+        expect(calculateNoteFromInterval(note, interval, "desc").getNote()).toBe("Cb4");
     });
     
     test("Ascending (not specified) augmented 8", () => {

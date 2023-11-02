@@ -1,4 +1,5 @@
-const Interval = require("../src/utils/intervals/interval.js");
+import {describe, test, expect} from "@jest/globals";
+import Interval from "../utils/intervals/interval";
 
 describe("Test interval class", () => {
     const interval1 = new Interval("minor 3", 3);

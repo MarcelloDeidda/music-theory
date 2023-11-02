@@ -1,4 +1,6 @@
-const Note = require("../src/utils/notes/note");
+import {describe, test, expect} from "@jest/globals";
+
+import Note from "../utils/notes/note";
 
 describe("Test Note class", () => {
     const note1 = new Note("C4", "crotchet", true);
